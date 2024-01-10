@@ -1,4 +1,50 @@
 ﻿  GameRenderer.cpp
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameRenderer.cpp(8,57): warning C4244: 'argument': conversion from 'T' to 'unsigned int', possible loss of data
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameRenderer.cpp(8,57): warning C4244:         with
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameRenderer.cpp(8,57): warning C4244:         [
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameRenderer.cpp(8,57): warning C4244:             T=float
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameRenderer.cpp(8,57): warning C4244:         ]
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameRenderer.cpp(8,43): warning C4244: 'argument': conversion from 'T' to 'unsigned int', possible loss of data
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameRenderer.cpp(8,43): warning C4244:         with
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameRenderer.cpp(8,43): warning C4244:         [
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameRenderer.cpp(8,43): warning C4244:             T=float
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameRenderer.cpp(8,43): warning C4244:         ]
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameRenderer.cpp(36,61): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameRenderer.cpp(36,61): warning C4244:         with
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameRenderer.cpp(36,61): warning C4244:         [
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameRenderer.cpp(36,61): warning C4244:             T=float
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameRenderer.cpp(36,61): warning C4244:         ]
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameRenderer.cpp(36,61): warning C4244:         and
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameRenderer.cpp(36,61): warning C4244:         [
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameRenderer.cpp(36,61): warning C4244:             T=unsigned int
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameRenderer.cpp(36,61): warning C4244:         ]
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameRenderer.cpp(36,47): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameRenderer.cpp(36,47): warning C4244:         with
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameRenderer.cpp(36,47): warning C4244:         [
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameRenderer.cpp(36,47): warning C4244:             T=float
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameRenderer.cpp(36,47): warning C4244:         ]
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameRenderer.cpp(36,47): warning C4244:         and
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameRenderer.cpp(36,47): warning C4244:         [
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameRenderer.cpp(36,47): warning C4244:             T=unsigned int
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameRenderer.cpp(36,47): warning C4244:         ]
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameRenderer.cpp(39,95): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameRenderer.cpp(39,95): warning C4244:         with
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameRenderer.cpp(39,95): warning C4244:         [
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameRenderer.cpp(39,95): warning C4244:             T=float
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameRenderer.cpp(39,95): warning C4244:         ]
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameRenderer.cpp(39,95): warning C4244:         and
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameRenderer.cpp(39,95): warning C4244:         [
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameRenderer.cpp(39,95): warning C4244:             T=int
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameRenderer.cpp(39,95): warning C4244:         ]
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameRenderer.cpp(39,83): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameRenderer.cpp(39,83): warning C4244:         with
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameRenderer.cpp(39,83): warning C4244:         [
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameRenderer.cpp(39,83): warning C4244:             T=float
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameRenderer.cpp(39,83): warning C4244:         ]
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameRenderer.cpp(39,83): warning C4244:         and
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameRenderer.cpp(39,83): warning C4244:         [
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameRenderer.cpp(39,83): warning C4244:             T=int
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameRenderer.cpp(39,83): warning C4244:         ]
   MainGame.cpp
   Generating Code...
   TheTimeDungeons.vcxproj -> M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\x64\Debug\TheTimeDungeons.exe

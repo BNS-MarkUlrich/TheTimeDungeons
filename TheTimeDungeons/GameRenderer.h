@@ -2,12 +2,16 @@
 
 #include <SFML/Graphics.hpp>
 
-class GameRenderer {
+class GameRenderer : public sf::RenderWindow
+{
 public:
-    GameRenderer(); // Declaration of the constructor
+    GameRenderer(sf::Vector2f targetResolution);
+    ~GameRenderer();
     void renderWindow();
+    void setResolution(sf::Vector2f newResolution);
 
 private:
+    sf::Vector2f resolution;
     sf::RenderWindow window;
     sf::CircleShape circle;
 };
