@@ -1,35 +1,36 @@
 #include "MainGame.h"
 #include "GameRenderer.h"
-#include "PhysicsEngine.h"
-#include "PhysicsObject.h"
-#include "BallTest.h"
-
-void renderThreadBehaviour()
-{
-    
-}
-
-void physicsThreadBehaviour()
-{
-	
-}
+#include <iostream>
+using namespace sf;
 
 int main() 
 {
     sf::Vector2f windowSize(800, 600);
     GameRenderer app(windowSize);
-    app.renderWindow();
+    app.create(sf::VideoMode(windowSize.x, windowSize.y), "The Time Dungeons");
 
-    PhysicsEngine physicsEngine;
+    CircleShape circle = sf::CircleShape(50.f);
+    circle.setRadius(50.f);
+    circle.setFillColor(sf::Color::White);
+    circle.setOrigin(circle.getRadius(), circle.getRadius());
+    circle.setPosition(windowSize.x / 2.f, windowSize.y / 2.f);
+    
 
-    BallTest ball;
-    ball.setRadius(50);
-    ball.setPosition(sf::Vector2f(100, 100));
-    ball.setAcceleration(sf::Vector2f(0, 100));
+    while (app.isOpen()) {
+        sf::Event event;
+        while (app.pollEvent(event)) {
+            if (event.type == sf::Event::Closed)
+                app.close();
+        }
 
-    while (physicsEngine.fixedUpdate())
-    {
-        ball.updatePhysicsBody(physicsEngine.deltaTime);
+        app.clear();
+        app.draw(circle);
+        app.display();
+        app.setSize(sf::Vector2u(windowSize.x, windowSize.y));
+
+        sf::Vector2f mousePos = sf::Vector2f(sf::Mouse::getPosition(app));
+        sf::Vector2f mousePosWorld = app.mapPixelToCoords(sf::Vector2i(mousePos.x, mousePos.y));
+        circle.setPosition(mousePosWorld);
     }
 
     return 0;
