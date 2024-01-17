@@ -29,7 +29,8 @@ void Game::update(sf::Time deltaTime)
 void Game::render() 
 {
     window.clear();
-    Room& currentRoom = dungeon.getCurrentRoom();
+    sf::Vector2f size = sf::Vector2f(500,500);
+    Room currentRoom = Room(size);
     currentRoom.draw(window);
     player.draw(window);
     window.display();

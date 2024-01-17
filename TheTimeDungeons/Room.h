@@ -3,8 +3,6 @@
 
 #include <SFML/Graphics.hpp>
 #include <vector>
-#include <cstdlib> // For rand() and srand()
-#include <ctime>   // For time()
 
 class Room {
 	// Additional Room properties and methods
@@ -16,12 +14,9 @@ class Room {
 public:
 	Room(sf::Vector2f size);
 	void draw(sf::RenderWindow& window);
-	const std::vector<sf::Vector2f>& getExitPoints() const;
 
 private:
 	sf::Vector2f size;
-	std::vector<sf::Vector2f> exitPoints; // Entry/Exit points
-	void generateExitPoints(unsigned int count);
 };
 
 #endif

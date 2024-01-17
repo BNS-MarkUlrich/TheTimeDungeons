@@ -2,7 +2,6 @@
 
 #include <SFML/Graphics.hpp>
 #include "Player.h"
-#include "Dungeon.h"
 
 class Game 
 {
@@ -11,7 +10,6 @@ public:
     void run();
 
     Player player;
-    Dungeon dungeon = Dungeon(50, 50);
 
 private:
     void processEvents();
