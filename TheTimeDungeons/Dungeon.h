@@ -15,11 +15,12 @@ public:
     Dungeon(int width, int height);
     void generateDungeon();
     Room& getCurrentRoom();
-    void setCurrentRoom(int x, int y);
+    void setCurrentRoom(Room room, sf::Vector2f roomPosition);
 
 private:
     std::vector<std::vector<Room>> rooms;
     int width, height;
+    Room currentRoom = Room(sf::Vector2f(10, 10));
     sf::Vector2i currentRoomPosition;
 };
 

@@ -14,6 +14,7 @@ class Room {
 	// Implement grid (for AI pathfinding later)
 
 public:
+	Room();
 	Room(sf::Vector2f size);
 	void draw(sf::RenderWindow& window);
 	const std::vector<sf::Vector2f>& getExitPoints() const;

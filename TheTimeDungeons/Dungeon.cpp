@@ -2,7 +2,14 @@
 
 Dungeon::Dungeon(int width, int height) : width(width), height(height) {
     rooms.resize(height, std::vector<Room>(width));
-    setCurrentRoom(0, height - 1); // Starting room at bottom-left
+
+    sf::Vector2f startingRoomSize = sf::Vector2f(100, 100);
+    sf::Vector2f startingRoomPosition = sf::Vector2f(50, height - 1);
+
+    Room startingRoom = Room(startingRoomSize);
+    rooms[0][0] = startingRoom;
+
+    setCurrentRoom(startingRoom, startingRoomPosition); // Starting room at bottom-left
 }
 
 void Dungeon::generateDungeon() {
@@ -10,9 +17,11 @@ void Dungeon::generateDungeon() {
 }
 
 Room& Dungeon::getCurrentRoom() {
-    return rooms[currentRoomPosition.y][currentRoomPosition.x];
+    return currentRoom;
 }
 
-void Dungeon::setCurrentRoom(int x, int y) {
-    currentRoomPosition = sf::Vector2i(x, y);
+void Dungeon::setCurrentRoom(Room room, sf::Vector2f roomPosition) 
+{
+    currentRoom = room;
+    currentRoomPosition = sf::Vector2i();
 }
