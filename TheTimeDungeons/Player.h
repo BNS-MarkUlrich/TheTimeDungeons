@@ -3,6 +3,9 @@
 
 #include "Room.h"
 #include <SFML/Graphics.hpp>
+#include <string>
+#include <vector>
+#include "InputParser.h"
 
 class Player {
     // include methods for moving the player using the WASD keys
@@ -14,8 +17,16 @@ public:
     void draw(sf::RenderWindow& window); // Draw the player
 
     // Other player methods and properties
+    sf::Vector2f getPosition();
+
+    void parseInput(const std::string& input);
+    void processInput(const std::vector<std::string>& input);
     
 private:
+    void move(const std::string& direction);
+
+    InputParser inputParser;
+
     sf::Vector2f currentPosition;
     sf::CircleShape shape; // SFML shape for the player
 };

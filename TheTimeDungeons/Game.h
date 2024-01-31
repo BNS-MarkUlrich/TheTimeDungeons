@@ -4,14 +4,12 @@
 #include "Player.h"
 #include "Dungeon.h"
 
+
 class Game 
 {
 public:
-    Game() : window(sf::VideoMode(800, 600), "The Time Dungeons") {}
+    Game();
     void run();
-
-    Player player;
-    Dungeon dungeon = Dungeon(50, 50);
 
 private:
     void processEvents();
@@ -19,4 +17,8 @@ private:
     void render();
 
     sf::RenderWindow window;
+    sf::View view;
+
+    Player player;
+    Dungeon dungeon;
 };

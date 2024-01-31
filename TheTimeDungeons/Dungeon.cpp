@@ -1,4 +1,5 @@
 #include "Dungeon.h"
+#include <iostream>
 
 Dungeon::Dungeon(int width, int height) : width(width), height(height) {
     rooms.resize(height, std::vector<Room>(width));
@@ -10,13 +11,15 @@ Dungeon::Dungeon(int width, int height) : width(width), height(height) {
     rooms[0][0] = startingRoom;
 
     setCurrentRoom(startingRoom, startingRoomPosition); // Starting room at bottom-left
+
+    //std::cout << "Dungeon generated with " << width << "x" << height << " rooms" << std::endl;
 }
 
 void Dungeon::generateDungeon() {
     // Dungeon generation logic, including room size and exit points
 }
 
-Room& Dungeon::getCurrentRoom() {
+Room Dungeon::getCurrentRoom() {
     return currentRoom;
 }
 

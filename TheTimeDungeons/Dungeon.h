@@ -14,7 +14,7 @@ class Dungeon {
 public:
     Dungeon(int width, int height);
     void generateDungeon();
-    Room& getCurrentRoom();
+    Room getCurrentRoom();
     void setCurrentRoom(Room room, sf::Vector2f roomPosition);
 
 private:
