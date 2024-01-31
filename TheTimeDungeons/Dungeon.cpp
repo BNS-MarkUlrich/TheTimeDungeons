@@ -4,7 +4,7 @@
 Dungeon::Dungeon(int width, int height) : width(width), height(height) {
     rooms.resize(height, std::vector<Room>(width));
 
-    sf::Vector2f startingRoomSize = sf::Vector2f(100, 100);
+    sf::Vector2f startingRoomSize = sf::Vector2f(500, 300);
     sf::Vector2f startingRoomPosition = sf::Vector2f(50, height - 1);
 
     Room startingRoom = Room(startingRoomSize);

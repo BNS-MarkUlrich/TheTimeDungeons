@@ -21,6 +21,10 @@ public:
 
     void parseInput(const std::string& input);
     void processInput(const std::vector<std::string>& input);
+
+    float lerp(float a, float b, float f) {
+		return a + f * (b - a);
+	}
     
 private:
     void move(const std::string& direction);
@@ -29,6 +33,7 @@ private:
 
     sf::Vector2f currentPosition;
     sf::CircleShape shape; // SFML shape for the player
+    float movementSpeed = 1.0f; // Speed of the player
 };
 
 #endif

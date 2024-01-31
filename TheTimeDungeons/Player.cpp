@@ -3,6 +3,8 @@
 
 Player::Player() {
     // Initialize player properties, including SFML shape
+    currentPosition = sf::Vector2f(50, 50);
+    movementSpeed = 10.0f;
 }
 
 void Player::update(sf::Time deltaTime) {
@@ -11,7 +13,7 @@ void Player::update(sf::Time deltaTime) {
 
 void Player::draw(sf::RenderWindow& window) 
 {
-    currentPosition = sf::Vector2f(50, 50); // Set the position of the player
+    //currentPosition = sf::Vector2f(50, 50); // Set the position of the player
     shape.setPosition(currentPosition); // Set the position of the player shape
     shape.setFillColor(sf::Color::Green); // Set the color of the player shape
     shape.setRadius(10.0f); // Set the radius of the player shape
@@ -51,4 +53,17 @@ void Player::processInput(const std::vector<std::string>& commands) {
 void Player::move(const std::string& direction) {
     // Implement movement logic
     std::cout << "Moving " << direction << std::endl;
+
+    if (direction == "Up") {
+		currentPosition.y -= movementSpeed;
+	}
+    if (direction == "Down") {
+		currentPosition.y += movementSpeed;
+	}
+    if (direction == "Left") {
+		currentPosition.x -= movementSpeed;
+	}
+    if (direction == "Right") {
+		currentPosition.x += movementSpeed;
+	}
 }

@@ -36,12 +36,6 @@ void Game::processEvents()
 
                 player.parseInput(input);
                 input.clear(); // Clear input for next command
-
-                //if (pressedKey == '\r' || pressedKey == '\n') { // Enter key
-                //    // Process input
-                //    player.parseInput(input);
-                //    input.clear(); // Clear input for next command
-                //}
             }
         }
     }

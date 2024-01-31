@@ -1,7 +1,7 @@
 #include "Room.h"
 #include <iostream>
 
-Room::Room() : size(sf::Vector2f(100.0f, 100.0f)) {
+Room::Room() : size(sf::Vector2f(500.0f, 200.0f)) {
     srand(static_cast<unsigned int>(time(0))); // Seed random number generator
     generateExitPoints(1 + rand() % 3); // Generate 1 to 3 exit points
     std::cout << "Room generated with " << exitPoints.size() << " exit points" << std::endl;
