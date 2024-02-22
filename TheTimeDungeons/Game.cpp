@@ -26,18 +26,6 @@ void Game::processEvents()
     while (window.pollEvent(event)) {
         if (event.type == sf::Event::Closed)
             window.close();
-
-        if (event.type == sf::Event::TextEntered) {
-            if (event.text.unicode < 128) {
-                char pressedKey = static_cast<char>(event.text.unicode);
-                //std::cout << "Pressed key: " << pressedKey << std::endl;
-
-                input += pressedKey;
-
-                player.parseInput(input);
-                input.clear(); // Clear input for next command
-            }
-        }
     }
 }
 

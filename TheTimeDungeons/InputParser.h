@@ -1,16 +1,21 @@
 #ifndef INPUTPARSER_H
 #define INPUTPARSER_H
 
+#include <SFML/Graphics.hpp>
+#include <map>
 #include <string>
 #include <vector>
+
+#include "Action.cpp"
 
 class InputParser {
 public:
     InputParser();
-    std::vector<std::string> parseInput(const std::string& input);
+    sf::Vector2f getMoveDirection();
 
 private:
-    std::vector<std::string> tokenize(const std::string& input);
+	void InitKeyBindings();
+    std::map<Action, sf::Keyboard::Key> keyBindings;
 };
 
-#endif // INPUTPARSER_H
+#endif
