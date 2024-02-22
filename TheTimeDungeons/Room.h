@@ -15,12 +15,14 @@ class Room {
 
 public:
 	Room();
-	Room(sf::Vector2f size);
+	Room(sf::Vector2f size, sf::Vector2f position);
 	void draw(sf::RenderWindow& window);
 	const std::vector<sf::Vector2f>& getExitPoints() const;
+	sf::Vector2f getCenter() { return position + size / 2.0f; }
 
 private:
 	sf::Vector2f size;
+	sf::Vector2f position;
 	std::vector<sf::Vector2f> exitPoints; // Entry/Exit points
 	void generateExitPoints(unsigned int count);
 };

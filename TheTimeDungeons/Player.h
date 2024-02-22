@@ -1,10 +1,11 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include "Room.h"
 #include <SFML/Graphics.hpp>
 #include <string>
 #include <vector>
+
+#include "Room.h"
 #include "InputParser.h"
 
 class Player {
@@ -13,11 +14,14 @@ class Player {
 
 public:
     Player();
-    void update(sf::Time deltaTime); // Update player's state
+    void start(); // Start the player
+    void update(); // Update player's state
+    void fixedUpdate(sf::Time deltaTime); // Update player's state
     void draw(sf::RenderWindow& window); // Draw the player
 
     // Other player methods and properties
     sf::Vector2f getPosition();
+    Room currentRoom;
 
     float lerp(float a, float b, float f) {
 		return a + f * (b - a);

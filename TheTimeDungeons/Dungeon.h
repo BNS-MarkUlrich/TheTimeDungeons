@@ -19,9 +19,9 @@ public:
 
 private:
     std::vector<std::vector<Room>> rooms;
+    sf::Vector2f currentRoomPosition;
     int width, height;
-    Room currentRoom = Room(sf::Vector2f(10, 10));
-    sf::Vector2i currentRoomPosition;
+    Room currentRoom = Room(sf::Vector2f(10, 10), sf::Vector2f(50, 80));
 };
 
 #endif
