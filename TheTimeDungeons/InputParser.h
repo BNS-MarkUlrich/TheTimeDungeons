@@ -12,6 +12,7 @@ class InputParser {
 public:
     InputParser();
     sf::Vector2f getMoveDirection();
+    bool isKeyPressed(Action action);
 
 private:
 	void InitKeyBindings();

@@ -46,13 +46,16 @@ void Game::processEvents()
 
 void Game::update() 
 {
+    // Update is called before every rendered frame.
     player.update();
-    
 }
 
 void Game::fixedUpdate(sf::Time deltaTime)
 {
+    // Fixed update is called at a fixed time step, meaning it called independently from the current framerate.
     player.fixedUpdate(deltaTime);
+
+    view.setCenter(player.getPosition());
 }
 
 void Game::render() 
@@ -64,7 +67,6 @@ void Game::render()
     dungeon.getCurrentRoom().draw(window);
     player.draw(window);
     //view.setCenter(dungeon.getCurrentRoom().getCenter());
-    view.setCenter(player.getPosition());
-
+    
     window.display();
 }

@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 
+#include "MathUtils.h"
 #include "Room.h"
 #include "InputParser.h"
 
@@ -22,19 +23,26 @@ public:
     // Other player methods and properties
     sf::Vector2f getPosition();
     Room currentRoom;
-
-    float lerp(float a, float b, float f) {
-		return a + f * (b - a);
-	}
     
 private:
     InputParser inputParser;
 
     sf::Vector2f currentPosition;
     sf::CircleShape shape; // SFML shape for the player
+    sf::Vector2f moveDirection;
+    sf::Vector2f velocity;
     float movementSpeed = 1.0f; // Speed of the player
+    float diagonalMovementDivider = 1.414f; // Used to divide the movement speed when moving diagonally
+    float speedBoostMultiplier = 1.0f; // Used to multiply the movement speed when the player is boosted
+    float maxSpeedBoostMultiplier = 12.0f; // Maximum speed boost multiplier
+    float boostDuration = 0.35f; // Duration of the speed boost
+    bool isBoosted = false; // Whether the player is boosted or not
 
     void move(sf::Vector2f direction);
+    void attack();
+    void activateBoost();
+    void boostSpeed(sf::Time deltaTime);
+    void resetSpeed();
 };
 
 #endif
