@@ -11,8 +11,12 @@ void InputParser::InitKeyBindings() {
 	keyBindings[Action::MoveDown] = sf::Keyboard::S;
 	keyBindings[Action::MoveLeft] = sf::Keyboard::A;
 	keyBindings[Action::MoveRight] = sf::Keyboard::D;
-	keyBindings[Action::Attack] = sf::Keyboard::Space;
+	keyBindings[Action::BoostSpeed] = sf::Keyboard::Space;
 	keyBindings[Action::None] = sf::Keyboard::Unknown;
+}
+
+bool InputParser::isKeyPressed(Action action) {
+	return sf::Keyboard::isKeyPressed(keyBindings[action]);
 }
 
 sf::Vector2f InputParser::getMoveDirection() {

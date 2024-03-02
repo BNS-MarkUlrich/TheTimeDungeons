@@ -3,6 +3,6 @@ enum class Action {
 	MoveDown,
 	MoveLeft,
 	MoveRight,
-	Attack,
+	BoostSpeed,
 	None
 };
