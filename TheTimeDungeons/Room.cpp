@@ -1,33 +1,56 @@
 #include "Room.h"
+#include <iostream>
 
-Room::Room(sf::Vector2f size)
-{
-    this->size = size;
+Room::Room() : size(sf::Vector2f(500.0f, 200.0f)) {
+    srand(static_cast<unsigned int>(time(0))); // Seed random number generator
+    generateExitPoints(1 + rand() % 3); // Generate 1 to 3 exit points
+    std::cout << "Room generated with " << exitPoints.size() << " exit points" << std::endl;
+}
+
+Room::Room(sf::Vector2f size, sf::Vector2f position) : size(size), position(position) {
+    srand(static_cast<unsigned int>(time(0))); // Seed random number generator
+    generateExitPoints(1 + rand() % 3); // Generate 1 to 3 exit points
 }
 
 void Room::draw(sf::RenderWindow& window) {
     // Drawing logic for the room using SFML shapes
-    // draw walls as white lines
-    // draw floor as black rectangle
+    // Implement the drawing logic here
+    // Example: Draw a rectangle representing the room
+    sf::RectangleShape roomShape(size);
+    roomShape.setFillColor(sf::Color::White);
+    roomShape.setPosition(sf::Vector2f(0, 0));
+    window.draw(roomShape);
+}
 
-    // Draw walls as white lines
-    sf::RectangleShape topWall(sf::Vector2f(size.x, 1));
-    topWall.setFillColor(sf::Color::White);
-    topWall.setPosition(0, 0);
-    window.draw(topWall);
+void Room::generateExitPoints(unsigned int count) {
+    // Clear any existing exit points
+    exitPoints.clear();
 
-    sf::RectangleShape bottomWall(sf::Vector2f(size.x, 1));
-    bottomWall.setFillColor(sf::Color::White);
-    bottomWall.setPosition(0, size.y - 1);
-    window.draw(bottomWall);
+    for (unsigned int i = 0; i < count; ++i) {
+        sf::Vector2f point;
+        int wall = rand() % 4; // Choose a random wall (0: top, 1: right, 2: bottom, 3: left)
+        switch (wall) {
+        case 0: // Top wall
+            point.x = static_cast<float>(rand() % static_cast<int>(size.x));
+            point.y = 0;
+            break;
+        case 1: // Right wall
+            point.x = size.x;
+            point.y = static_cast<float>(rand() % static_cast<int>(size.y));
+            break;
+        case 2: // Bottom wall
+            point.x = static_cast<float>(rand() % static_cast<int>(size.x));
+            point.y = size.y;
+            break;
+        case 3: // Left wall
+            point.x = 0;
+            point.y = static_cast<float>(rand() % static_cast<int>(size.y));
+            break;
+        }
+        exitPoints.push_back(point);
+    }
+}
 
-    sf::RectangleShape leftWall(sf::Vector2f(1, size.y));
-    leftWall.setFillColor(sf::Color::White);
-    leftWall.setPosition(0, 0);
-    window.draw(leftWall);
-
-    sf::RectangleShape rightWall(sf::Vector2f(1, size.y));
-    rightWall.setFillColor(sf::Color::White);
-    rightWall.setPosition(size.x - 1, 0);
-    window.draw(rightWall);
+const std::vector<sf::Vector2f>& Room::getExitPoints() const {
+    return exitPoints;
 }

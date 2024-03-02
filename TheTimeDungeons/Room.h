@@ -3,6 +3,8 @@
 
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include <cstdlib> // For rand() and srand()
+#include <ctime>   // For time()
 
 class Room {
 	// Additional Room properties and methods
@@ -12,11 +14,17 @@ class Room {
 	// Implement grid (for AI pathfinding later)
 
 public:
-	Room(sf::Vector2f size);
+	Room();
+	Room(sf::Vector2f size, sf::Vector2f position);
 	void draw(sf::RenderWindow& window);
+	const std::vector<sf::Vector2f>& getExitPoints() const;
+	sf::Vector2f getCenter() { return position + size / 2.0f; }
 
 private:
 	sf::Vector2f size;
+	sf::Vector2f position;
+	std::vector<sf::Vector2f> exitPoints; // Entry/Exit points
+	void generateExitPoints(unsigned int count);
 };
 
 #endif
