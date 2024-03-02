@@ -1,4 +1,153 @@
-﻿  Game.cpp
-  TheTimeDungeons.vcxproj -> M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\x64\Debug\TheTimeDungeons.exe
-  'pwsh.exe' is not recognized as an internal or external command,
-  operable program or batch file.
+﻿  Dungeon.cpp
+  Game.cpp
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Room.h(9,14): error C2504: 'GameObject': base class undefined
+  (compiling source file 'Dungeon.cpp')
+  
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Room.h(22,16): error C3668: 'Room::getGlobalBounds': method with override specifier 'override' did not override any base class methods
+  (compiling source file 'Dungeon.cpp')
+  
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Dungeon.cpp(8,65): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Dungeon.cpp(8,65): warning C4244:         with
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Dungeon.cpp(8,65): warning C4244:         [
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Dungeon.cpp(8,65): warning C4244:             T=float
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Dungeon.cpp(8,65): warning C4244:         ]
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Player.h(24,10): error C2259: 'Room': cannot instantiate abstract class
+  (compiling source file 'Game.cpp')
+  M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Room.h(9,7):
+  see declaration of 'Room'
+  M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Player.h(24,10):
+  due to following members:
+  M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Player.h(24,10):
+  'void GameObject::draw(sf::RenderTarget &) const': is abstract
+  M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameObject.h(8,18):
+  see declaration of 'GameObject::draw'
+  
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Dungeon.h(24,10): error C2259: 'Room': cannot instantiate abstract class
+  (compiling source file 'Game.cpp')
+  M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Room.h(9,7):
+  see declaration of 'Room'
+  M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Dungeon.h(24,10):
+  due to following members:
+  M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Dungeon.h(24,10):
+  'void GameObject::draw(sf::RenderTarget &) const': is abstract
+  M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameObject.h(8,18):
+  see declaration of 'GameObject::draw'
+  
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Dungeon.h(24,24): error C2259: 'Room': cannot instantiate abstract class
+  (compiling source file 'Game.cpp')
+  M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Room.h(9,7):
+  see declaration of 'Room'
+  M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Dungeon.h(24,24):
+  due to following members:
+  M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Dungeon.h(24,24):
+  'void GameObject::draw(sf::RenderTarget &) const': is abstract
+  M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameObject.h(8,18):
+  see declaration of 'GameObject::draw'
+  
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Game.h(25,12): error C2259: 'Player': cannot instantiate abstract class
+  (compiling source file 'Game.cpp')
+  M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Player.h(13,7):
+  see declaration of 'Player'
+  M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Game.h(25,12):
+  due to following members:
+  M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Game.h(25,12):
+  'void GameObject::draw(sf::RenderTarget &) const': is abstract
+  M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameObject.h(8,18):
+  see declaration of 'GameObject::draw'
+  
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Game.cpp(15,33): error C2259: 'Room': cannot instantiate abstract class
+  M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Room.h(9,7):
+  see declaration of 'Room'
+  M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Game.cpp(15,33):
+  due to following members:
+  M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Game.cpp(15,33):
+  'void GameObject::draw(sf::RenderTarget &) const': is abstract
+  M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameObject.h(8,18):
+  see declaration of 'GameObject::draw'
+  
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Game.cpp(67,12): error C2259: 'Room': cannot instantiate abstract class
+  M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Room.h(9,7):
+  see declaration of 'Room'
+  M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Game.cpp(67,12):
+  due to following members:
+  M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Game.cpp(67,12):
+  'void GameObject::draw(sf::RenderTarget &) const': is abstract
+  M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameObject.h(8,18):
+  see declaration of 'GameObject::draw'
+  
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Game.cpp(69,27): error C2259: 'Room': cannot instantiate abstract class
+  M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Room.h(9,7):
+  see declaration of 'Room'
+  M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Game.cpp(69,27):
+  due to following members:
+  M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Game.cpp(69,27):
+  'void GameObject::draw(sf::RenderTarget &) const': is abstract
+  M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameObject.h(8,18):
+  see declaration of 'GameObject::draw'
+  
+  GameObject.cpp
+  main.cpp
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Player.h(24,10): error C2259: 'Room': cannot instantiate abstract class
+  (compiling source file 'main.cpp')
+  M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Room.h(9,7):
+  see declaration of 'Room'
+  M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Player.h(24,10):
+  due to following members:
+  M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Player.h(24,10):
+  'void GameObject::draw(sf::RenderTarget &) const': is abstract
+  M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameObject.h(8,18):
+  see declaration of 'GameObject::draw'
+  
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Dungeon.h(24,10): error C2259: 'Room': cannot instantiate abstract class
+  (compiling source file 'main.cpp')
+  M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Room.h(9,7):
+  see declaration of 'Room'
+  M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Dungeon.h(24,10):
+  due to following members:
+  M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Dungeon.h(24,10):
+  'void GameObject::draw(sf::RenderTarget &) const': is abstract
+  M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameObject.h(8,18):
+  see declaration of 'GameObject::draw'
+  
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Dungeon.h(24,24): error C2259: 'Room': cannot instantiate abstract class
+  (compiling source file 'main.cpp')
+  M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Room.h(9,7):
+  see declaration of 'Room'
+  M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Dungeon.h(24,24):
+  due to following members:
+  M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Dungeon.h(24,24):
+  'void GameObject::draw(sf::RenderTarget &) const': is abstract
+  M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameObject.h(8,18):
+  see declaration of 'GameObject::draw'
+  
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Game.h(25,12): error C2259: 'Player': cannot instantiate abstract class
+  (compiling source file 'main.cpp')
+  M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Player.h(13,7):
+  see declaration of 'Player'
+  M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Game.h(25,12):
+  due to following members:
+  M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Game.h(25,12):
+  'void GameObject::draw(sf::RenderTarget &) const': is abstract
+  M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameObject.h(8,18):
+  see declaration of 'GameObject::draw'
+  
+  Player.cpp
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Player.h(24,10): error C2259: 'Room': cannot instantiate abstract class
+  (compiling source file 'Player.cpp')
+  M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Room.h(9,7):
+  see declaration of 'Room'
+  M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Player.h(24,10):
+  due to following members:
+  M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Player.h(24,10):
+  'void GameObject::draw(sf::RenderTarget &) const': is abstract
+  M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\GameObject.h(8,18):
+  see declaration of 'GameObject::draw'
+  
+  Room.cpp
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Room.h(9,14): error C2504: 'GameObject': base class undefined
+  (compiling source file 'Room.cpp')
+  
+M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\TheTimeDungeons\Room.h(22,16): error C3668: 'Room::getGlobalBounds': method with override specifier 'override' did not override any base class methods
+  (compiling source file 'Room.cpp')
+  
+  Generating Code...

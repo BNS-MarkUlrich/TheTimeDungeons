@@ -6,7 +6,7 @@
 #include <cstdlib> // For rand() and srand()
 #include <ctime>   // For time()
 
-class Room {
+class Room : GameObject {
 	// Additional Room properties and methods
 
 	// Know the size of the room and exit points
@@ -19,6 +19,7 @@ public:
 	void draw(sf::RenderWindow& window);
 	const std::vector<sf::Vector2f>& getExitPoints() const;
 	sf::Vector2f getCenter() { return position + size / 2.0f; }
+	sf::FloatRect getGlobalBounds() const override { return sf::FloatRect(position, size); }
 
 private:
 	sf::Vector2f size;

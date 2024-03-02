@@ -1,11 +1,6 @@
 #include "MathUtils.h"
 #include <utility>
 
-//float MathUtils::lerp(float startValue, float endValue, sf::Time elapsedTime, sf::Time totalTime) {
-//	float time = elapsedTime.asSeconds() / totalTime.asSeconds();
-//	return startValue + time * (endValue - startValue);
-//}
-
 float MathUtils::lerp(float startValue, float endValue, sf::Time elapsedTime, sf::Time totalTime) {
 	// Avoid division by zero
 	if (totalTime.asSeconds() == 0.f) {

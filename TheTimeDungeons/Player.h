@@ -4,21 +4,20 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 #include <vector>
+#include "GameObject.h"
 
 #include "MathUtils.h"
 #include "Room.h"
 #include "InputParser.h"
 
-class Player {
-    // include methods for moving the player using the WASD keys
-    // include methods for checking collisions
-
+class Player : public GameObject {
 public:
     Player();
-    void start(); // Start the player
-    void update(); // Update player's state
-    void fixedUpdate(sf::Time deltaTime); // Update player's state
-    void draw(sf::RenderWindow& window); // Draw the player
+    void start();
+    void update();
+    void fixedUpdate(sf::Time deltaTime);
+    void draw(sf::RenderWindow& window);
+    sf::FloatRect getGlobalBounds() const override { return shape.getGlobalBounds(); }
 
     // Other player methods and properties
     sf::Vector2f getPosition();
@@ -31,12 +30,12 @@ private:
     sf::CircleShape shape; // SFML shape for the player
     sf::Vector2f moveDirection;
     sf::Vector2f velocity;
-    float movementSpeed = 1.0f; // Speed of the player
+    float movementSpeed = 1.0f;
     float diagonalMovementDivider = 1.414f; // Used to divide the movement speed when moving diagonally
-    float speedBoostMultiplier = 1.0f; // Used to multiply the movement speed when the player is boosted
-    float maxSpeedBoostMultiplier = 12.0f; // Maximum speed boost multiplier
-    float boostDuration = 0.35f; // Duration of the speed boost
-    bool isBoosted = false; // Whether the player is boosted or not
+    float speedBoostMultiplier = 1.0f;
+    float maxSpeedBoostMultiplier = 12.0f;
+    float boostDuration = 0.35f;
+    bool isBoosted = false;
 
     void move(sf::Vector2f direction);
     void attack();
