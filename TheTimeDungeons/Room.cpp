@@ -4,7 +4,7 @@
 Room::Room() : size(sf::Vector2f(500.0f, 200.0f)) {
     srand(static_cast<unsigned int>(time(0))); // Seed random number generator
     generateExitPoints(1 + rand() % 3); // Generate 1 to 3 exit points
-    std::cout << "Room generated with " << exitPoints.size() << " exit points" << std::endl;
+    //std::cout << "Room generated with " << exitPoints.size() << " exit points" << std::endl;
 }
 
 Room::Room(sf::Vector2f size, sf::Vector2f position) : size(size), position(position) {
@@ -17,7 +17,9 @@ void Room::draw(sf::RenderWindow& window) {
     // Implement the drawing logic here
     // Example: Draw a rectangle representing the room
     sf::RectangleShape roomShape(size);
-    roomShape.setFillColor(sf::Color::White);
+    roomShape.setOutlineColor(sf::Color::White);
+    roomShape.setOutlineThickness(10.0f);
+    roomShape.setFillColor(sf::Color::Transparent);
     roomShape.setPosition(sf::Vector2f(0, 0));
     window.draw(roomShape);
 }
