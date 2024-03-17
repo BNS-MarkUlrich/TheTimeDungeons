@@ -2,8 +2,6 @@
 #include <iostream>
 
 bool isCollision(const sf::Shape& shape1, const sf::Shape& shape2) {
-	// Implement shape-shape collision detection
-	// You can find many algorithms online
 	if (dynamic_cast<const sf::RectangleShape*>(&shape1) && dynamic_cast<const sf::RectangleShape*>(&shape2)) {
 		return isCollision(dynamic_cast<const sf::RectangleShape&>(shape1), dynamic_cast<const sf::RectangleShape&>(shape2));
 	}

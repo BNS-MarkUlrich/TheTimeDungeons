@@ -8,8 +8,6 @@
 class Enemy {
 public:
 	Enemy();
-	Enemy(Room startingRoom);
-
 	void start();
 	void update();
 	void fixedUpdate(sf::Time deltaTime); // Update player's state

@@ -5,23 +5,18 @@ Player::Player() {
     std::cout << "Player created" << std::endl;
 
     movementSpeed = 1.25f;
+    shape.setFillColor(sf::Color::Green);
+    shape.setRadius(10.0f);
+
     collider.name = "Player Collider";
     collider.shape = &shape;
-}
-
-Player::Player(Room startingRoom) {
-	std::cout << "Player created" << std::endl;
-
-	movementSpeed = 1.25f;
-	collider.name = "Player Collider";
-	collider.shape = &shape;
-	currentRoom = startingRoom;
 }
 
 void Player::start() {
     std::cout << "Player started" << std::endl;
 
 	currentPosition = sf::Vector2f(0,0);
+    shape.setPosition(currentPosition);
 }
 
 void Player::update() {
@@ -43,13 +38,13 @@ void Player::fixedUpdate(sf::Time deltaTime) {
 
     moveDirection = inputParser.getMoveDirection();
     move(moveDirection);
+
+    currentPosition = collider.shape->getPosition();
 }
 
 void Player::draw(sf::RenderWindow& window) 
 {
     shape.setPosition(currentPosition);
-    shape.setFillColor(sf::Color::Green);
-    shape.setRadius(10.0f);
     window.draw(shape);
 }
 
@@ -68,9 +63,8 @@ void Player::move(sf::Vector2f direction) {
         finalMovementSpeed = movementSpeed / diagonalMovementDivider;
     }
 
-    velocity = finalMovementSpeed * speedBoostMultiplier * direction;
-	shape.move(velocity);
-    currentPosition = shape.getPosition();
+    collider.velocity = finalMovementSpeed * speedBoostMultiplier * direction;
+	shape.move(collider.velocity); // Remove this line when figured out how to move object using velocity from Collider
 }
 
 void Player::attack() {

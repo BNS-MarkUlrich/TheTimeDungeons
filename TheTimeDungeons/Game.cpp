@@ -8,9 +8,6 @@ Game::Game() : window(sf::VideoMode(800, 600), "The Time Dungeons"), dungeon(10,
     player.currentRoom = dungeon.getCurrentRoom();
     enemy.currentRoom = dungeon.getCurrentRoom();
 
-    std::cout << "Player Radius: " << player.collider.name << std::endl;
-    std::cout << "Enemy Radius: " << enemy.collider.name << std::endl;
-
     collisionManager.addCollider(player.collider);
     collisionManager.addCollider(enemy.collider);
 
@@ -40,10 +37,10 @@ void Game::run()
         render();
     }
 
-    //// Clean up resources (delete allocated shapes)
-    //for (auto& collider : colliders) {
-    //    delete collider.shape;
-    //}
+    // Clean up resources (delete allocated shapes)
+    for (auto& collider : colliders) {
+        delete collider.shape;
+    }
 }
 
 void Game::processEvents() 
@@ -66,8 +63,9 @@ void Game::update()
 
 void Game::fixedUpdate(sf::Time deltaTime)
 {
-    // Fixed update is called at a fixed time step, meaning it called independently from the current framerate.
     collisionManager.fixedUpdate(deltaTime);
+
+    // Fixed update is called at a fixed time step, meaning it called independently from the current framerate.
     player.fixedUpdate(deltaTime);
     enemy.fixedUpdate(deltaTime);
 

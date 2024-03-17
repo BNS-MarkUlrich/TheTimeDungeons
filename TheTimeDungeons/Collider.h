@@ -5,8 +5,8 @@
 
 struct Collider {
 	std::string name;
-	sf::Shape* shape; // Change to this if you want to use any shape
-	//sf::Vector2f velocity;
+	sf::Shape* shape;
+	sf::Vector2f velocity;
 };
 
 #endif
