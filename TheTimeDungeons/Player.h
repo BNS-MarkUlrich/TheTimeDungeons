@@ -8,6 +8,7 @@
 #include "MathUtils.h"
 #include "Room.h"
 #include "InputParser.h"
+#include "Collider.h"
 
 class Player {
     // include methods for moving the player using the WASD keys
@@ -15,6 +16,7 @@ class Player {
 
 public:
     Player();
+    Player(Room startingRoom);
     void start(); // Start the player
     void update(); // Update player's state
     void fixedUpdate(sf::Time deltaTime); // Update player's state
@@ -23,6 +25,7 @@ public:
     // Other player methods and properties
     sf::Vector2f getPosition();
     Room currentRoom;
+    Collider collider;
     
 private:
     InputParser inputParser;

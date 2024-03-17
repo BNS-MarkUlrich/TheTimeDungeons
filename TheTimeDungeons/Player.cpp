@@ -2,14 +2,26 @@
 #include <iostream>
 
 Player::Player() {
-    // Set current position to the center of the current room in the Dungeon
+    std::cout << "Player created" << std::endl;
+
     movementSpeed = 1.25f;
+    collider.name = "Player Collider";
+    collider.shape = &shape;
+}
+
+Player::Player(Room startingRoom) {
+	std::cout << "Player created" << std::endl;
+
+	movementSpeed = 1.25f;
+	collider.name = "Player Collider";
+	collider.shape = &shape;
+	currentRoom = startingRoom;
 }
 
 void Player::start() {
     std::cout << "Player started" << std::endl;
 
-	currentPosition = currentRoom.getCenter();
+	currentPosition = sf::Vector2f(0,0);
 }
 
 void Player::update() {
@@ -87,7 +99,7 @@ void Player::activateBoost() {
 void Player::boostSpeed(sf::Time deltaTime) {
     speedBoostMultiplier = MathUtils::lerp(speedBoostMultiplier, 1.0f, deltaTime, sf::seconds(boostDuration));
     //move(moveDirection); // Unlock together with return call in fixedUpdate for locked direction while boosting
-    std::cout << "Boosted Speed: " << speedBoostMultiplier << std::endl;
+    //std::cout << "Boosted Speed: " << speedBoostMultiplier << std::endl;
 }
 
 void Player::resetSpeed() {
