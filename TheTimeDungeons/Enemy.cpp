@@ -7,9 +7,10 @@ Enemy::Enemy() {
 	shape.setFillColor(sf::Color::Red);
 	shape.setRadius(10.0f);
 
-	collider.name = "Enemy Collider";
+	collider.name = &name;
 	collider.shape = &shape;
-	collider.velocity = sf::Vector2f(-1, 0);
+	collider.velocity = &velocity;
+	collider.hasCollided = &hasCollided;
 }
 
 void Enemy::start() {
@@ -17,12 +18,18 @@ void Enemy::start() {
 
 	currentPosition = currentRoom.getCenter();
 	shape.setPosition(currentPosition);
+	velocity = sf::Vector2f(-1, 0);
 }
 
 void Enemy::update() {}
 
 void Enemy::fixedUpdate(sf::Time deltaTime) {
 	currentPosition = collider.shape->getPosition();
+
+	if (hasCollided) {
+		hasCollided = false;
+		return;
+	}
 }
 
 void Enemy::draw(sf::RenderWindow& window)

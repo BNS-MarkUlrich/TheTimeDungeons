@@ -22,16 +22,16 @@ bool InputParser::isKeyPressed(Action action) {
 sf::Vector2f InputParser::getMoveDirection() {
     sf::Vector2f direction;
 
-    if (sf::Keyboard::isKeyPressed(keyBindings[Action::MoveUp])) {
+    if (isKeyPressed(Action::MoveUp)) {
 		direction.y = -1;
 	}
-    if (sf::Keyboard::isKeyPressed(keyBindings[Action::MoveDown])) {
+    if (isKeyPressed(Action::MoveDown)) {
 		direction.y = 1;
 	}
-    if (sf::Keyboard::isKeyPressed(keyBindings[Action::MoveLeft])) {
+    if (isKeyPressed(Action::MoveLeft)) {
 		direction.x = -1;
 	}
-    if (sf::Keyboard::isKeyPressed(keyBindings[Action::MoveRight])) {
+    if (isKeyPressed(Action::MoveRight)) {
 		direction.x = 1;
 	}
 

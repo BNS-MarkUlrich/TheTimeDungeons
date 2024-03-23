@@ -8,8 +8,10 @@ Player::Player() {
     shape.setFillColor(sf::Color::Green);
     shape.setRadius(10.0f);
 
-    collider.name = "Player Collider";
+    collider.name = &name;
     collider.shape = &shape;
+    collider.velocity = &velocity;
+    collider.hasCollided = &hasCollided;
 }
 
 void Player::start() {
@@ -30,14 +32,18 @@ void Player::fixedUpdate(sf::Time deltaTime) {
     {
         boostSpeed(deltaTime);
         attack();
-        //return; // Unlock together with move call in boostSpeed for locked direction while boosting
     }
     else if (isBoosted && speedBoostMultiplier <= 1.15f) {
 		resetSpeed();
 	}
 
+    if (hasCollided) {
+        hasCollided = false;
+        return;
+	}
+
     moveDirection = inputParser.getMoveDirection();
-    move(moveDirection);
+    move(moveDirection, deltaTime);
 
     currentPosition = collider.shape->getPosition();
 }
@@ -52,8 +58,9 @@ sf::Vector2f Player::getPosition() {
     return currentPosition;
 }
 
-void Player::move(sf::Vector2f direction) {
+void Player::move(sf::Vector2f direction, sf::Time deltaTime) {
     if (direction.x == 0 && direction.y == 0) {
+        setVelocity(sf::Vector2f(0, 0), deltaTime, 1.0f);
 		return;
     }
 
@@ -63,8 +70,7 @@ void Player::move(sf::Vector2f direction) {
         finalMovementSpeed = movementSpeed / diagonalMovementDivider;
     }
 
-    collider.velocity = finalMovementSpeed * speedBoostMultiplier * direction;
-	shape.move(collider.velocity); // Remove this line when figured out how to move object using velocity from Collider
+    velocity = finalMovementSpeed * speedBoostMultiplier * direction;
 }
 
 void Player::attack() {
@@ -92,8 +98,11 @@ void Player::activateBoost() {
 
 void Player::boostSpeed(sf::Time deltaTime) {
     speedBoostMultiplier = MathUtils::lerp(speedBoostMultiplier, 1.0f, deltaTime, sf::seconds(boostDuration));
-    //move(moveDirection); // Unlock together with return call in fixedUpdate for locked direction while boosting
     //std::cout << "Boosted Speed: " << speedBoostMultiplier << std::endl;
+}
+
+void Player::setVelocity(sf::Vector2f newVelocity, sf::Time deltaTime, float duration) {
+	velocity = MathUtils::lerp(velocity, newVelocity, deltaTime, sf::seconds(duration));
 }
 
 void Player::resetSpeed() {

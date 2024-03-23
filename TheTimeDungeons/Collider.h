@@ -4,9 +4,10 @@
 #include <SFML/Graphics.hpp>
 
 struct Collider {
-	std::string name;
+	std::string* name;
 	sf::Shape* shape;
-	sf::Vector2f velocity;
+	sf::Vector2f* velocity;
+	bool* hasCollided;
 };
 
 #endif

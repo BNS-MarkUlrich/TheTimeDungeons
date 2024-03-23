@@ -19,8 +19,11 @@ public:
 	Collider collider;
 
 private:
+	std::string name = "Enemy";
 	sf::Vector2f currentPosition;
 	sf::CircleShape shape; // SFML shape for the player
+	sf::Vector2f velocity;
+	bool hasCollided = false;
 };
 
 #endif
