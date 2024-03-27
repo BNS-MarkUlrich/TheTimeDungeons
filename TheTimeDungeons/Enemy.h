@@ -4,8 +4,9 @@
 #include <SFML/System/Vector2.hpp>
 #include "Room.h"
 #include "Collider.h"
+#include "GameObject.h"
 
-class Enemy {
+class Enemy : public GameObject {
 public:
 	Enemy();
 	void start();
@@ -14,16 +15,7 @@ public:
 	void draw(sf::RenderWindow& window); // Draw the player
 
 	// Other player methods and properties
-	sf::Vector2f getPosition();
 	Room currentRoom;
-	Collider collider;
-
-private:
-	std::string name = "Enemy";
-	sf::Vector2f currentPosition;
-	sf::CircleShape shape; // SFML shape for the player
-	sf::Vector2f velocity;
-	bool hasCollided = false;
 };
 
 #endif

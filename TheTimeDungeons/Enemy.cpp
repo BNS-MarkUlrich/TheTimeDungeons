@@ -2,42 +2,35 @@
 #include <iostream>
 
 Enemy::Enemy() {
-	std::cout << "Enemy created" << std::endl;
+	name = "Enemy";
 
 	shape.setFillColor(sf::Color::Red);
 	shape.setRadius(10.0f);
-
-	collider.name = &name;
-	collider.shape = &shape;
-	collider.velocity = &velocity;
-	collider.hasCollided = &hasCollided;
 }
 
 void Enemy::start() {
-	std::cout << "Enemy started" << std::endl;
+	GameObject::start();
 
 	currentPosition = currentRoom.getCenter();
 	shape.setPosition(currentPosition);
-	velocity = sf::Vector2f(-1, 0);
+	velocity = sf::Vector2f(0, 0);
 }
 
-void Enemy::update() {}
+void Enemy::update() {
+	GameObject::update();
+}
 
 void Enemy::fixedUpdate(sf::Time deltaTime) {
-	currentPosition = collider.shape->getPosition();
-
-	if (hasCollided) {
-		hasCollided = false;
+	if (isColliding) {
+		isColliding = false;
 		return;
 	}
+
+	GameObject::fixedUpdate(deltaTime);
+
+	currentPosition = collider.shape->getPosition();
 }
 
-void Enemy::draw(sf::RenderWindow& window)
-{
-	shape.setPosition(currentPosition);
-	window.draw(shape);
-}
-
-sf::Vector2f Enemy::getPosition() {
-	return currentPosition;
+void Enemy::draw(sf::RenderWindow& window) {
+	GameObject::draw(window);
 }

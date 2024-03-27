@@ -5,12 +5,12 @@
 #include <string>
 #include <vector>
 
-#include "MathUtils.h"
 #include "Room.h"
 #include "InputParser.h"
 #include "Collider.h"
+#include "GameObject.h"
 
-class Player {
+class Player : public GameObject {
     // include methods for moving the player using the WASD keys
     // include methods for checking collisions
 
@@ -22,19 +22,13 @@ public:
     void draw(sf::RenderWindow& window); // Draw the player
 
     // Other player methods and properties
-    sf::Vector2f getPosition();
     Room currentRoom;
-    Collider collider;
+    //Collider collider;
     
 private:
     InputParser inputParser;
 
-    std::string name = "Player";
-    sf::Vector2f currentPosition;
-    sf::CircleShape shape; // SFML shape for the player
     sf::Vector2f moveDirection;
-    sf::Vector2f velocity;
-    bool hasCollided = false;
     float movementSpeed = 1.0f; // Speed of the player
     float diagonalMovementDivider = 1.414f; // Used to divide the movement speed when moving diagonally
     float speedBoostMultiplier = 1.0f; // Used to multiply the movement speed when the player is boosted
@@ -46,7 +40,6 @@ private:
     void attack();
     void activateBoost();
     void boostSpeed(sf::Time deltaTime);
-    void setVelocity(sf::Vector2f newVelocity, sf::Time deltaTime, float duration);
     void resetSpeed();
 };
 
