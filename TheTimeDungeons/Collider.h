@@ -5,22 +5,31 @@
 #include <SFML/Graphics.hpp>
 
 struct Collider {
+	int* id;
 	std::string* name;
 	sf::Shape* shape;
 	sf::Vector2f* velocity;
 	bool* isColliding;
 	bool* isTrigger;
-	std::map<std::string, bool>* collisionMap;
+	std::map<int, bool>* collisionMap;
 
 public:
+	Collider* hitCollider;
+
 	void OnCollisionEnter(const Collider& other) const {
 		std::cout << *name << " started colliding with " << *other.name << std::endl;
-		sf::Vector2f newVelocity = *velocity;
-		*other.velocity = newVelocity;
 	}
 
 	void OnTriggerEnter(Collider& other) {
-		
+
+	}
+
+	void OnCollisionExit(const Collider& other) const {
+		std::cout << *name << " stopped colliding with " << *other.name << std::endl;
+	}
+
+	void OnTriggerExit(Collider& other) {
+
 	}
 };
 

@@ -32,12 +32,16 @@ void CollisionManager::fixedUpdate(sf::Time deltaTime) {
             else
             {
                 // Handle collision exit
-                if (colliders[i].collisionMap->count(*colliders[j].name) > 0) {
-					colliders[i].collisionMap->erase(*colliders[j].name);
+                if (colliders[i].collisionMap->count(*colliders[j].id) > 0) {
+					colliders[i].collisionMap->erase(*colliders[j].id);
+                    colliders[i].OnCollisionExit(colliders[j]);
+                    *colliders[i].isColliding = false;
 				}
                 // Handle collision exit
-                if (colliders[j].collisionMap->count(*colliders[i].name) > 0) {
-					colliders[j].collisionMap->erase(*colliders[i].name);
+                if (colliders[j].collisionMap->count(*colliders[i].id) > 0) {
+					colliders[j].collisionMap->erase(*colliders[i].id);
+					colliders[j].OnCollisionExit(colliders[i]);
+					*colliders[j].isColliding = false;
                 }
             }
         }
@@ -46,18 +50,20 @@ void CollisionManager::fixedUpdate(sf::Time deltaTime) {
 
 void CollisionManager::handleCollision(const Collider& collider1, const Collider& collider2) {
     // Check if the collision has already been handled
-    if (collider1.collisionMap->count(*collider2.name) == 0) { 
+    if (collider1.collisionMap->count(*collider2.id) == 0) { 
         // Add the collision to the map
-		collider1.collisionMap->insert(std::pair<std::string, bool>(*collider2.name, true)); 
+        collider1.collisionMap->insert(std::pair<int, bool>(*collider2.id, true));
         collider1.OnCollisionEnter(collider2);
         *collider1.isColliding = true;
+        *collider1.hitCollider = collider2;
 
         // Check if the collision has already been handled
-        if (collider2.collisionMap->count(*collider1.name) == 0) { 
+        if (collider2.collisionMap->count(*collider1.id) == 0) { 
             // Add the collision to the map
-            collider2.collisionMap->insert(std::pair<std::string, bool>(*collider1.name, true)); 
+            collider2.collisionMap->insert(std::pair<int, bool>(*collider1.id, true));
 			collider2.OnCollisionEnter(collider1);
 			*collider2.isColliding = true;
+            *collider2.hitCollider = collider1;
         }
         return;
 	}
@@ -67,7 +73,7 @@ void CollisionManager::handleCollision(const Collider& collider1, const Collider
 		return;
 	}
 
-    std::cout << "Collision detected between " << *collider1.name << " and " << *collider2.name << std::endl;
+    //std::cout << "Collision detected between " << *collider1.name << " and " << *collider2.name << std::endl;
 	// Handle collision logic here
     *collider1.isColliding = true;
     *collider2.isColliding = true;

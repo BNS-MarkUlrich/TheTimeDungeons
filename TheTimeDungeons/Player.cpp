@@ -62,11 +62,11 @@ void Player::move(sf::Vector2f direction, sf::Time deltaTime) {
 
 void Player::attack() {
     // On Collision with an enemy, deal damage
-    // Make player invulnerable while attacking
-    //if (shape.getGlobalBounds().intersects(obstacle.getGlobalBounds())) {
-    //    // Handle collision
-    //    std::cout << "Collision detected!" << std::endl;
-    //}
+    if (collider.hitCollider->isColliding && *collider.hitCollider->name == "Enemy")
+    {
+        isTrigger = true;
+		std::cout << "Player attacked an enemy" << std::endl;
+	}
 }
 
 void Player::activateBoost() {
@@ -91,5 +91,6 @@ void Player::boostSpeed(sf::Time deltaTime) {
 void Player::resetSpeed() {
 	speedBoostMultiplier = 1.0f;
 	isBoosted = false;
+    isTrigger = false;
 	std::cout << "Reset Speed" << std::endl;
 }

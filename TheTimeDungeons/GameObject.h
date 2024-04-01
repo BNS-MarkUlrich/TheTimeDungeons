@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 #include <vector>
+#include <cstdlib>
 
 #include "MathUtils.h"
 #include "Collider.h"
@@ -20,6 +21,7 @@ public:
     Collider collider;
 
 protected:
+    int id;
     std::string name = "GameObject";
     sf::Vector2f currentPosition;
     sf::CircleShape shape;
@@ -34,7 +36,8 @@ protected:
     sf::Vector2f velocity;
     bool isColliding = false;
     bool isTrigger = false;
-    std::map<std::string, bool> collisionMap;
+    std::map<int, bool> collisionMap;
+    std::string hitColliderName = "None";
     void setVelocity(sf::Vector2f newVelocity, sf::Time deltaTime, float duration);
     void physicsUpdate(sf::Time deltaTime);
 };
