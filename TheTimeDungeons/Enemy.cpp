@@ -28,9 +28,13 @@ void Enemy::fixedUpdate(sf::Time deltaTime) {
 
 	GameObject::fixedUpdate(deltaTime);
 
-	currentPosition = collider.shape->getPosition();
+	currentPosition = shape.getPosition();
 }
 
 void Enemy::draw(sf::RenderWindow& window) {
 	GameObject::draw(window);
+}
+
+void Enemy::OnCollisionStart(const Collider& other) const {
+	std::cout << "TEST Enemy collided with " << other.name << std::endl;
 }

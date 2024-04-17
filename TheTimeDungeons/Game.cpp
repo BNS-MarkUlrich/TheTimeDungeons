@@ -8,8 +8,8 @@ Game::Game() : window(sf::VideoMode(800, 600), "The Time Dungeons"), dungeon(10,
     player.currentRoom = dungeon.getCurrentRoom();
     enemy.currentRoom = dungeon.getCurrentRoom();
 
-    collisionManager.addCollider(player.collider);
-    collisionManager.addCollider(enemy.collider);
+    collisionManager.addCollider(player);
+    collisionManager.addCollider(enemy);
 
     start();
 }
@@ -38,9 +38,9 @@ void Game::run()
     }
 
     // Clean up resources (delete allocated shapes)
-    for (auto& collider : colliders) {
+    /*for (auto& collider : colliders) {
         delete collider.shape;
-    }
+    }*/
 }
 
 void Game::processEvents() 

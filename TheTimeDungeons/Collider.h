@@ -4,20 +4,20 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 
-struct Collider {
-	int* id;
-	std::string* name;
-	sf::Shape* shape;
-	sf::Vector2f* velocity;
-	bool* isColliding;
-	bool* isTrigger;
-	std::map<int, bool>* collisionMap;
+#include "GameObject.h"
 
+class Collider : public GameObject {
 public:
-	Collider* hitCollider;
+	Collider();
+	sf::Shape* colliderShape;
+	sf::Vector2f* colVelocity;
 
 	void OnCollisionEnter(const Collider& other) const {
-		std::cout << *name << " started colliding with " << *other.name << std::endl;
+		OnCollisionStart(other);
+	}
+
+	virtual void OnCollisionStart(const Collider& other) const {
+		//std::cout << name << " started colliding with " << other.name << std::endl;
 	}
 
 	void OnTriggerEnter(Collider& other) {
@@ -25,7 +25,7 @@ public:
 	}
 
 	void OnCollisionExit(const Collider& other) const {
-		std::cout << *name << " stopped colliding with " << *other.name << std::endl;
+		std::cout << name << " stopped colliding with " << other.name << std::endl;
 	}
 
 	void OnTriggerExit(Collider& other) {

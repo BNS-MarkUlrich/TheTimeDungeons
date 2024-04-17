@@ -26,6 +26,8 @@ private:
 
     Player player;
     Enemy enemy;
+    /*Collider* player;
+    Collider* enemy;*/
     Dungeon dungeon;
 
     std::vector<Collider> colliders;

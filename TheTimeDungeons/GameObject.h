@@ -7,9 +7,7 @@
 #include <cstdlib>
 
 #include "MathUtils.h"
-#include "Collider.h"
-
-#pragma once
+#include "Room.h"
 
 class GameObject
 {
@@ -18,16 +16,15 @@ public:
     GameObject(std::string name);
 
     sf::Vector2f getPosition();
-    Collider collider;
+    Room currentRoom;
 
-protected:
     int id;
     std::string name = "GameObject";
     sf::Vector2f currentPosition;
     sf::CircleShape shape;
 
     // Standard methods
-    void start();
+    void start() const;
     void update();
     void fixedUpdate(sf::Time deltaTime);
     void draw(sf::RenderWindow& window);
@@ -37,7 +34,6 @@ protected:
     bool isColliding = false;
     bool isTrigger = false;
     std::map<int, bool> collisionMap;
-    std::string hitColliderName = "None";
     void setVelocity(sf::Vector2f newVelocity, sf::Time deltaTime, float duration);
     void physicsUpdate(sf::Time deltaTime);
 };

@@ -4,7 +4,8 @@
 Player::Player() {
     name = "Player";
 
-    movementSpeed = 1.25f;
+    movementSpeed = 2.25f;
+    maxMovementSpeed = movementSpeed;
     shape.setFillColor(sf::Color::Green);
     shape.setRadius(10.0f);
 }
@@ -12,7 +13,7 @@ Player::Player() {
 void Player::start() {
     GameObject::start();
 
-	currentPosition = sf::Vector2f(0,0);
+	currentPosition = sf::Vector2f(150,150);
     shape.setPosition(currentPosition);
 }
 
@@ -25,6 +26,7 @@ void Player::update() {
 
 void Player::fixedUpdate(sf::Time deltaTime) {
     GameObject::fixedUpdate(deltaTime);
+
     if (isBoosted && speedBoostMultiplier > 1.15f)
     {
         boostSpeed(deltaTime);
@@ -47,7 +49,7 @@ void Player::draw(sf::RenderWindow& window)
 
 void Player::move(sf::Vector2f direction, sf::Time deltaTime) {
     if (direction.x == 0 && direction.y == 0) {
-        setVelocity(sf::Vector2f(0, 0), deltaTime, 1.0f);
+        setVelocity(sf::Vector2f(0, 0), deltaTime, 0.5f);
 		return;
     }
 
@@ -57,16 +59,15 @@ void Player::move(sf::Vector2f direction, sf::Time deltaTime) {
         finalMovementSpeed = movementSpeed / diagonalMovementDivider;
     }
 
-    velocity = finalMovementSpeed * speedBoostMultiplier * direction;
+    sf::Vector2f force = finalMovementSpeed * speedBoostMultiplier * direction;
+    //setVelocity(force, deltaTime, 1.0f);
+    velocity += force * deltaTime.asSeconds();
+    //velocity = finalMovementSpeed * speedBoostMultiplier * direction;
 }
 
 void Player::attack() {
     // On Collision with an enemy, deal damage
-    if (collider.hitCollider->isColliding && *collider.hitCollider->name == "Enemy")
-    {
-        isTrigger = true;
-		std::cout << "Player attacked an enemy" << std::endl;
-	}
+    isTrigger = true;
 }
 
 void Player::activateBoost() {
@@ -94,3 +95,7 @@ void Player::resetSpeed() {
     isTrigger = false;
 	std::cout << "Reset Speed" << std::endl;
 }
+
+//void Player::OnCollisionStart(const Collider& other) const {
+//	std::cout << "TEST Player collided with " << other.name << std::endl;
+//}

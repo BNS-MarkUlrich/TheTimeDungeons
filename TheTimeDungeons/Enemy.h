@@ -2,11 +2,10 @@
 #define ENEMY_H
 
 #include <SFML/System/Vector2.hpp>
-#include "Room.h"
 #include "Collider.h"
 #include "GameObject.h"
 
-class Enemy : public GameObject {
+class Enemy : public Collider {
 public:
 	Enemy();
 	void start();
@@ -15,7 +14,10 @@ public:
 	void draw(sf::RenderWindow& window); // Draw the player
 
 	// Other player methods and properties
-	Room currentRoom;
+	//Room currentRoom;
+
+private:
+	void OnCollisionStart(const Collider& other) const override;
 };
 
 #endif

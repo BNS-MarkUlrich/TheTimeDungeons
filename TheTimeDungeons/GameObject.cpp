@@ -2,33 +2,15 @@
 #include <iostream>
 
 GameObject::GameObject() {
-	id = rand() % 1000;
-	collider.id = &id;
-	collider.name = &name;
-	collider.shape = &shape;
-	collider.velocity = &velocity;
-	collider.isColliding = &isColliding;
-	collider.isTrigger = &isTrigger;
-	collider.collisionMap = &collisionMap;
-	collider.hitCollider = new Collider();
-	collider.hitCollider->name = &hitColliderName;
+	this->id = rand() % 1000;
 }
 
 GameObject::GameObject(std::string name) {
 	this->name = name;
-	id = rand() % 1000;
-	collider.id = &id;
-	collider.name = &this->name;
-	collider.shape = &shape;
-	collider.velocity = &velocity;
-	collider.isColliding = &isColliding;
-	collider.isTrigger = &isTrigger;
-	collider.collisionMap = &collisionMap;
-	collider.hitCollider = new Collider();
-	collider.hitCollider->name = &hitColliderName;
+	this->id = rand() % 1000;
 }
 
-void GameObject::start() {
+void GameObject::start() const {
 	std::cout << name << " started with ID: " << id << std::endl;
 }
 
@@ -48,7 +30,7 @@ void GameObject::physicsUpdate(sf::Time deltaTime) {
 		setVelocity(sf::Vector2f(0, 0), deltaTime, 1.0f);
 	}
 
-	currentPosition = collider.shape->getPosition();
+	currentPosition = shape.getPosition();
 }
 
 void GameObject::draw(sf::RenderWindow& window) {

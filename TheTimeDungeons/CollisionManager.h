@@ -12,7 +12,7 @@ public:
 private:
 	std::vector<Collider> colliders;
 
-	void handleCollision(const Collider& collider1, const Collider& collider2);
+	void handleCollision(Collider& collider1, Collider& collider2);
 };
 
 #endif
