@@ -60,9 +60,15 @@ void Player::move(sf::Vector2f direction, sf::Time deltaTime) {
     }
 
     sf::Vector2f force = finalMovementSpeed * speedBoostMultiplier * direction;
-    //setVelocity(force, deltaTime, 1.0f);
     velocity += force * deltaTime.asSeconds();
-    //velocity = finalMovementSpeed * speedBoostMultiplier * direction;
+
+    if (abs(velocity.x) > finalMovementSpeed * speedBoostMultiplier) {
+		velocity.x = finalMovementSpeed * speedBoostMultiplier * direction.x;
+	}
+
+    if (abs(velocity.y) > finalMovementSpeed * speedBoostMultiplier) {
+		velocity.y = finalMovementSpeed * speedBoostMultiplier * direction.y;
+	}
 }
 
 void Player::attack() {
@@ -85,7 +91,7 @@ void Player::activateBoost() {
 }
 
 void Player::boostSpeed(sf::Time deltaTime) {
-    speedBoostMultiplier = MathUtils::lerp(speedBoostMultiplier, 1.0f, deltaTime, sf::seconds(boostDuration));
+    speedBoostMultiplier = MathUtils::lerp(speedBoostMultiplier, 0.5f, deltaTime, sf::seconds(boostDuration));
     //std::cout << "Boosted Speed: " << speedBoostMultiplier << std::endl;
 }
 
