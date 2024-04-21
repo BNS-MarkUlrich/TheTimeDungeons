@@ -11,21 +11,21 @@ Player::Player() {
 }
 
 void Player::start() {
-    GameObject::start();
+    Collider::start();
 
 	currentPosition = sf::Vector2f(150,150);
     shape.setPosition(currentPosition);
 }
 
 void Player::update() {
-    GameObject::update();
+    Collider::update();
     if (inputParser.isKeyPressed(Action::BoostSpeed)) {
 		activateBoost();
 	}
 }
 
 void Player::fixedUpdate(sf::Time deltaTime) {
-    GameObject::fixedUpdate(deltaTime);
+    Collider::fixedUpdate(deltaTime);
 
     if (isBoosted && speedBoostMultiplier > 1.15f)
     {
@@ -36,23 +36,22 @@ void Player::fixedUpdate(sf::Time deltaTime) {
 		resetSpeed();
 	}
 
+    if (isColliding) {
+		std::cout << "Player is colliding" << std::endl;
+	}
+
     moveDirection = inputParser.getMoveDirection();
     move(moveDirection, deltaTime);
 }
 
 void Player::draw(sf::RenderWindow& window) 
 {
-    GameObject::draw(window);
+    Collider::draw(window);
     shape.setPosition(currentPosition);
     window.draw(shape);
 }
 
 void Player::move(sf::Vector2f direction, sf::Time deltaTime) {
-    if (direction.x == 0 && direction.y == 0) {
-        setVelocity(sf::Vector2f(0, 0), deltaTime, 0.5f);
-		return;
-    }
-
     float finalMovementSpeed = movementSpeed;
 
     if (direction.x != 0 && direction.y != 0) {
@@ -60,14 +59,17 @@ void Player::move(sf::Vector2f direction, sf::Time deltaTime) {
     }
 
     sf::Vector2f force = finalMovementSpeed * speedBoostMultiplier * direction;
-    velocity += force * deltaTime.asSeconds();
+    force = force * deltaTime.asSeconds();
+    //velocity += force;
+    colVelocity->x += force.x;
+    colVelocity->y += force.y;
 
-    if (abs(velocity.x) > finalMovementSpeed * speedBoostMultiplier) {
-		velocity.x = finalMovementSpeed * speedBoostMultiplier * direction.x;
+    if (abs(colVelocity->x) > finalMovementSpeed * speedBoostMultiplier) {
+        colVelocity->x = finalMovementSpeed * speedBoostMultiplier * direction.x;
 	}
 
-    if (abs(velocity.y) > finalMovementSpeed * speedBoostMultiplier) {
-		velocity.y = finalMovementSpeed * speedBoostMultiplier * direction.y;
+    if (abs(colVelocity->y) > finalMovementSpeed * speedBoostMultiplier) {
+        colVelocity->y = finalMovementSpeed * speedBoostMultiplier * direction.y;
 	}
 }
 

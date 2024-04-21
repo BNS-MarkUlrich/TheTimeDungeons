@@ -1,4 +1,7 @@
-﻿  Game.cpp
+﻿  Collider.cpp
+  CollisionManager.cpp
+  Enemy.cpp
+  Game.cpp
   Player.cpp
   main.cpp
   Generating Code...

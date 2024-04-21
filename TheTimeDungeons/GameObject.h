@@ -24,18 +24,18 @@ public:
     sf::CircleShape shape;
 
     // Standard methods
-    void start() const;
+    void start();
     void update();
     void fixedUpdate(sf::Time deltaTime);
     void draw(sf::RenderWindow& window);
 
     // Physics
-    sf::Vector2f velocity;
+    /*sf::Vector2f velocity;
     bool isColliding = false;
     bool isTrigger = false;
     std::map<int, bool> collisionMap;
     void setVelocity(sf::Vector2f newVelocity, sf::Time deltaTime, float duration);
-    void physicsUpdate(sf::Time deltaTime);
+    void physicsUpdate(sf::Time deltaTime);*/
 };
 
 #endif

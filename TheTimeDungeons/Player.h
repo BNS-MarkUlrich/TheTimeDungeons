@@ -7,7 +7,6 @@
 
 #include "InputParser.h"
 #include "Collider.h"
-#include "GameObject.h"
 
 class Player : public Collider {
     // include methods for moving the player using the WASD keys
@@ -28,7 +27,7 @@ private:
     InputParser inputParser;
 
     sf::Vector2f moveDirection;
-    float movementSpeed = 1.5f; // Speed of the player
+    float movementSpeed = 1.0f; // Speed of the player
     float maxMovementSpeed = 1.0f;
     float diagonalMovementDivider = 1.414f; // Used to divide the movement speed when moving diagonally
     float speedBoostMultiplier = 1.0f; // Used to multiply the movement speed when the player is boosted

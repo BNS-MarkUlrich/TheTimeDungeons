@@ -17,11 +17,16 @@ public:
 	}
 
 	virtual void OnCollisionStart(const Collider& other) const {
-		//std::cout << name << " started colliding with " << other.name << std::endl;
+		std::cout << name << " started colliding with " << other.name << std::endl;
+	}
+
+	void OnCollisionStay(const Collider& other) const {
+		colVelocity->x *= -1 * 0.5;
+		colVelocity->y *= -1 * 0.5;
 	}
 
 	void OnTriggerEnter(Collider& other) {
-
+		std::cout << name << " entered trigger with " << other.name << std::endl;
 	}
 
 	void OnCollisionExit(const Collider& other) const {
@@ -31,6 +36,19 @@ public:
 	void OnTriggerExit(Collider& other) {
 
 	}
+
+	// Standard methods
+	void start();
+	void update();
+	void fixedUpdate(sf::Time deltaTime);
+	void draw(sf::RenderWindow& window);
+
+	sf::Vector2f velocity;
+	bool isColliding = false;
+	bool isTrigger = false;
+	std::map<int, bool> collisionMap;
+	void setVelocity(sf::Vector2f newVelocity, sf::Time deltaTime, float duration);
+	void physicsUpdate(sf::Time deltaTime);
 };
 
 #endif

@@ -13,12 +13,12 @@ void CollisionManager::fixedUpdate(sf::Time deltaTime) {
        
         // Below is an example of how to handle collisions with the window boundaries
         if (colliders[i].colliderShape->getPosition().x < 0 || colliders[i].colliderShape->getPosition().x > 800) {
-			colliders[i].colVelocity->x *= -1;
             colliders[i].isColliding = true;
+            colliders[i].colVelocity->x = -colliders[i].colVelocity->x;
 		}
         if (colliders[i].colliderShape->getPosition().y < 0 || colliders[i].colliderShape->getPosition().y > 600) {
-            colliders[i].colVelocity->y *= -1;
             colliders[i].isColliding = true;
+            colliders[i].colVelocity->y = -colliders[i].colVelocity->y;
         }
     }
 
@@ -48,7 +48,7 @@ void CollisionManager::fixedUpdate(sf::Time deltaTime) {
     }
 }
 
-void CollisionManager::handleCollision(Collider& collider1, Collider& collider2) {
+void CollisionManager::handleCollision(Collider& collider1, Collider& collider2) const {
     // Check if the collision has already been handled
     if (collider1.collisionMap.count(collider2.id) == 0) { 
         // Add the collision to the map
@@ -68,11 +68,12 @@ void CollisionManager::handleCollision(Collider& collider1, Collider& collider2)
 
     if (collider1.isTrigger || collider2.isTrigger) {
 		// Handle trigger logic here
+        std::cout << "Triggered" << std::endl;
 		return;
 	}
 
-    //std::cout << "Collision detected between " << *collider1.name << " and " << *collider2.name << std::endl;
-	// Handle collision logic here
     collider1.isColliding = true;
     collider2.isColliding = true;
+    collider1.OnCollisionStay(collider2);
+    collider2.OnCollisionStay(collider1);
 }
