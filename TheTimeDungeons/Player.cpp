@@ -36,10 +36,6 @@ void Player::fixedUpdate(sf::Time deltaTime) {
 		resetSpeed();
 	}
 
-    if (isColliding) {
-		std::cout << "Player is colliding" << std::endl;
-	}
-
     moveDirection = inputParser.getMoveDirection();
     move(moveDirection, deltaTime);
 }
@@ -102,4 +98,8 @@ void Player::resetSpeed() {
 	isBoosted = false;
     isTrigger = false;
 	std::cout << "Reset Speed" << std::endl;
+}
+
+void Player::OnCollisionEnter(Collider* other) {
+	std::cout << "TEST Player collided with: " << other->name << std::endl;
 }

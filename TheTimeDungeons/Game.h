@@ -26,10 +26,12 @@ private:
 
     /*Player player;
     Enemy enemy;*/
-    Collider* player;
-    Collider* enemy;
+    /*Collider* player;
+    Collider* enemy;*/
+    Player* player;
+    Enemy* enemy;
     Dungeon dungeon;
 
     std::vector<Collider> colliders;
-    CollisionManager collisionManager;
+    CollisionManager* collisionManager;
 };

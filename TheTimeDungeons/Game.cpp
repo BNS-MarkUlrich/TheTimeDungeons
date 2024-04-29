@@ -4,7 +4,7 @@
 Game::Game() : window(sf::VideoMode(800, 600), "The Time Dungeons"), dungeon(10, 10) {
     // Initialize the view to the size of the window
     view.setSize(800, 600);
-    collisionManager = CollisionManager();
+    collisionManager = new CollisionManager();
 
     player = new Player();
     enemy = new Enemy();
@@ -12,8 +12,10 @@ Game::Game() : window(sf::VideoMode(800, 600), "The Time Dungeons"), dungeon(10,
     player->currentRoom = dungeon.getCurrentRoom();
     enemy->currentRoom = dungeon.getCurrentRoom();
 
-    collisionManager.addCollider(*player);
-    collisionManager.addCollider(*enemy);
+    collisionManager->addCollider(*player);
+    collisionManager->addCollider(*enemy);
+
+    //collisionManager->handleCollision(*player, *enemy);
 
     start();
 }
@@ -67,7 +69,7 @@ void Game::update()
 
 void Game::fixedUpdate(sf::Time deltaTime)
 {
-    collisionManager.fixedUpdate(deltaTime);
+    collisionManager->fixedUpdate(deltaTime);
 
     // Fixed update is called at a fixed time step, meaning it called independently from the current framerate.
     player->fixedUpdate(deltaTime);

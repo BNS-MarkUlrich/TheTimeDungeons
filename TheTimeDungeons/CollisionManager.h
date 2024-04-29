@@ -9,10 +9,10 @@ public:
 	void addCollider(Collider& collider);
 	void fixedUpdate(sf::Time deltaTime);
 
+	void handleCollision(Collider& collider1, Collider& collider2) const;
 private:
 	std::vector<Collider> colliders;
 
-	void handleCollision(Collider collider1, Collider collider2);
 };
 
 #endif

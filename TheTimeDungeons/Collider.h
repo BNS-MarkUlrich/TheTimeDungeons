@@ -57,10 +57,6 @@ public:
 		//fixyUpdate(deltaTime);
 	}
 
-	virtual void fixyUpdate(sf::Time deltaTime) {
-		//std::cout << "Collider fixedUpdate" << std::endl;
-	}
-
 	virtual void draw(sf::RenderWindow& window) {
 		GameObject::draw(window);
 	}
@@ -78,7 +74,7 @@ public:
 	//void physicsUpdate(sf::Time deltaTime);
 	void physicsUpdate(sf::Time deltaTime) {
 		if (isColliding && !isTrigger) {
-			//isColliding = false;
+			isColliding = false;
 			return;
 		}
 

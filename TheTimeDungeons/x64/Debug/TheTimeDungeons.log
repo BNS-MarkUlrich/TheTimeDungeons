@@ -1,10 +1,4 @@
-﻿  Collider.cpp
-  CollisionManager.cpp
-  Enemy.cpp
-  Game.cpp
-  Player.cpp
-  main.cpp
-  Generating Code...
+﻿  CollisionManager.cpp
   TheTimeDungeons.vcxproj -> M:\Work\BUAS\Projects\Cpp\TheTimeDungeons\x64\Debug\TheTimeDungeons.exe
   'pwsh.exe' is not recognized as an internal or external command,
   operable program or batch file.

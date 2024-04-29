@@ -17,8 +17,8 @@ public:
 	//Room currentRoom;
 
 private:
-	void OnCollisionStart(Collider& other) {
-		std::cout << "TEST Enemy collided with " << other.name << std::endl;
+	void OnCollisionStart(Collider* other) {
+		std::cout << "TEST Enemy collided with " << other->name << std::endl;
 	}
 };
 

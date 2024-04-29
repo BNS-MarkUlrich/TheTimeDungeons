@@ -1,6 +1,7 @@
 #include "CollisionManager.h"
 #include "CollisionDetection.h"
 #include <iostream>
+#include "Game.h"
 
 void CollisionManager::addCollider(Collider& collider) {
     colliders.push_back(collider);
@@ -48,32 +49,34 @@ void CollisionManager::fixedUpdate(sf::Time deltaTime) {
     }
 }
 
-void CollisionManager::handleCollision(Collider collider1, Collider collider2) {
+void CollisionManager::handleCollision(Collider& collider1, Collider& collider2) const {
     // Check if the collision has already been handled
-    if (collider1.collisionMap.count(collider2.id) == 0) { 
+    Player* player = static_cast<Player*>(&collider1);
+    Enemy* enemy = static_cast<Enemy*>(&collider2);
+    if (player->collisionMap.count(collider2.id) == 0) {
         // Add the collision to the map
-        collider1.collisionMap.insert(std::pair<int, bool>(collider2.id, true));
-        collider1.OnCollisionEnter(&collider2);
-        collider1.isColliding = true;
+        player->collisionMap.insert(std::pair<int, bool>(collider2.id, true));
+        player->OnCollisionEnter(&collider2);
+        player->isColliding = true;
 
         // Check if the collision has already been handled
-        if (collider2.collisionMap.count(collider1.id) == 0) { 
+        if (enemy->collisionMap.count(player->id) == 0) {
             // Add the collision to the map
-            collider2.collisionMap.insert(std::pair<int, bool>(collider1.id, true));
-			collider2.OnCollisionEnter(&collider1);
-			collider2.isColliding = true;
+            enemy->collisionMap.insert(std::pair<int, bool>(player->id, true));
+            enemy->OnCollisionEnter(player);
+            enemy->isColliding = true;
         }
         return;
-	}
+    }
 
-    if (collider1.isTrigger || collider2.isTrigger) {
+    if (player->isTrigger || enemy->isTrigger) {
 		// Handle trigger logic here
         std::cout << "Triggered" << std::endl;
 		return;
 	}
 
-    collider1.isColliding = true;
-    collider2.isColliding = true;
-    collider1.OnCollisionStay(collider2);
-    collider2.OnCollisionStay(collider1);
+    player->isColliding = true;
+    player->OnCollisionStay(collider2);
+    enemy->isColliding = true;
+    enemy->OnCollisionStay(collider1);
 }

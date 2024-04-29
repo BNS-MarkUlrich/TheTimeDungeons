@@ -19,9 +19,13 @@ public:
     void fixedUpdate(sf::Time deltaTime); // Update player's state
     void draw(sf::RenderWindow& window); // Draw the player
 
+    void activateBoost();
+
     // Other player methods and properties
     //Room currentRoom;
     //Collider collider;
+
+    void OnCollisionEnter(Collider* other);
     
 private:
     InputParser inputParser;
@@ -37,13 +41,9 @@ private:
 
     void move(sf::Vector2f direction, sf::Time deltaTime);
     void attack();
-    void activateBoost();
+    
     void boostSpeed(sf::Time deltaTime);
     void resetSpeed();
-
-    void OnCollisionStart(Collider* other) {
-        std::cout << "TEST Player collided with " << other->name << std::endl;
-    }
 };
 
 #endif
