@@ -6,6 +6,7 @@ Enemy::Enemy() {
 
 	shape.setFillColor(sf::Color::Red);
 	shape.setRadius(10.0f);
+	velocity = sf::Vector2f(2, 0);
 }
 
 void Enemy::start() {
@@ -13,7 +14,7 @@ void Enemy::start() {
 
 	currentPosition = currentRoom.getCenter();
 	shape.setPosition(currentPosition);
-	velocity = sf::Vector2f(0, 0);
+	velocity = sf::Vector2f(2, 0);
 }
 
 void Enemy::update() {
@@ -33,8 +34,4 @@ void Enemy::fixedUpdate(sf::Time deltaTime) {
 
 void Enemy::draw(sf::RenderWindow& window) {
 	GameObject::draw(window);
-}
-
-void Enemy::OnCollisionStart(const Collider& other) const {
-	std::cout << "TEST Enemy collided with " << other.name << std::endl;
 }

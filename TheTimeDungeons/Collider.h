@@ -12,12 +12,12 @@ public:
 	sf::Shape* colliderShape;
 	sf::Vector2f* colVelocity;
 
-	void OnCollisionEnter(const Collider& other) const {
+	void OnCollisionEnter(Collider* other) {
 		OnCollisionStart(other);
 	}
 
-	virtual void OnCollisionStart(const Collider& other) const {
-		std::cout << name << " started colliding with " << other.name << std::endl;
+	virtual void OnCollisionStart(Collider* other) {
+		std::cout << name << " started colliding with " << other->name << std::endl;
 	}
 
 	void OnCollisionStay(const Collider& other) const {
@@ -38,17 +38,61 @@ public:
 	}
 
 	// Standard methods
-	void start();
-	void update();
-	void fixedUpdate(sf::Time deltaTime);
-	void draw(sf::RenderWindow& window);
+	/*void start();
+	void update();*/
+	//void fixedUpdate(sf::Time deltaTime);
+	/*void draw(sf::RenderWindow& window);*/
+
+	virtual void start() {
+		GameObject::start();
+	}
+
+	virtual void update() {
+		GameObject::update();
+	}
+
+	virtual void fixedUpdate(sf::Time deltaTime) {
+		GameObject::fixedUpdate(deltaTime);
+		physicsUpdate(deltaTime);
+		//fixyUpdate(deltaTime);
+	}
+
+	virtual void fixyUpdate(sf::Time deltaTime) {
+		//std::cout << "Collider fixedUpdate" << std::endl;
+	}
+
+	virtual void draw(sf::RenderWindow& window) {
+		GameObject::draw(window);
+	}
 
 	sf::Vector2f velocity;
 	bool isColliding = false;
 	bool isTrigger = false;
 	std::map<int, bool> collisionMap;
-	void setVelocity(sf::Vector2f newVelocity, sf::Time deltaTime, float duration);
-	void physicsUpdate(sf::Time deltaTime);
+
+	//void setVelocity(sf::Vector2f newVelocity, sf::Time deltaTime, float duration);
+	virtual void setVelocity(sf::Vector2f newVelocity, sf::Time deltaTime, float duration) {
+		velocity = MathUtils::lerp(velocity, newVelocity, deltaTime, sf::seconds(duration));
+	}
+
+	//void physicsUpdate(sf::Time deltaTime);
+	void physicsUpdate(sf::Time deltaTime) {
+		if (isColliding && !isTrigger) {
+			//isColliding = false;
+			return;
+		}
+
+		if (abs(velocity.x) > 0) {
+			velocity.x = MathUtils::lerp(velocity.x, 0, deltaTime, sf::seconds(0.5f));
+		}
+
+		if (abs(velocity.y) > 0) {
+			velocity.y = MathUtils::lerp(velocity.y, 0, deltaTime, sf::seconds(0.5f));
+		}
+
+		//currentPosition += velocity * deltaTime.asSeconds();
+		currentPosition = shape.getPosition();
+	}
 };
 
 #endif

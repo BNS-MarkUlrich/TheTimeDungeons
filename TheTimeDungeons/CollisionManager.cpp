@@ -48,19 +48,19 @@ void CollisionManager::fixedUpdate(sf::Time deltaTime) {
     }
 }
 
-void CollisionManager::handleCollision(Collider& collider1, Collider& collider2) const {
+void CollisionManager::handleCollision(Collider collider1, Collider collider2) {
     // Check if the collision has already been handled
     if (collider1.collisionMap.count(collider2.id) == 0) { 
         // Add the collision to the map
         collider1.collisionMap.insert(std::pair<int, bool>(collider2.id, true));
-        collider1.OnCollisionEnter(collider2);
+        collider1.OnCollisionEnter(&collider2);
         collider1.isColliding = true;
 
         // Check if the collision has already been handled
         if (collider2.collisionMap.count(collider1.id) == 0) { 
             // Add the collision to the map
             collider2.collisionMap.insert(std::pair<int, bool>(collider1.id, true));
-			collider2.OnCollisionEnter(collider1);
+			collider2.OnCollisionEnter(&collider1);
 			collider2.isColliding = true;
         }
         return;

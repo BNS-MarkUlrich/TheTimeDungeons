@@ -24,10 +24,10 @@ private:
     sf::View view;
     sf::Time deltaTime;
 
-    Player player;
-    Enemy enemy;
-    /*Collider* player;
-    Collider* enemy;*/
+    /*Player player;
+    Enemy enemy;*/
+    Collider* player;
+    Collider* enemy;
     Dungeon dungeon;
 
     std::vector<Collider> colliders;

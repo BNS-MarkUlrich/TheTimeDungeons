@@ -17,7 +17,9 @@ public:
 	//Room currentRoom;
 
 private:
-	void OnCollisionStart(const Collider& other) const override;
+	void OnCollisionStart(Collider& other) {
+		std::cout << "TEST Enemy collided with " << other.name << std::endl;
+	}
 };
 
 #endif

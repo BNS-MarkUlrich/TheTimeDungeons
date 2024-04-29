@@ -5,11 +5,15 @@ Game::Game() : window(sf::VideoMode(800, 600), "The Time Dungeons"), dungeon(10,
     // Initialize the view to the size of the window
     view.setSize(800, 600);
     collisionManager = CollisionManager();
-    player.currentRoom = dungeon.getCurrentRoom();
-    enemy.currentRoom = dungeon.getCurrentRoom();
 
-    collisionManager.addCollider(player);
-    collisionManager.addCollider(enemy);
+    player = new Player();
+    enemy = new Enemy();
+
+    player->currentRoom = dungeon.getCurrentRoom();
+    enemy->currentRoom = dungeon.getCurrentRoom();
+
+    collisionManager.addCollider(*player);
+    collisionManager.addCollider(*enemy);
 
     start();
 }
@@ -17,8 +21,8 @@ Game::Game() : window(sf::VideoMode(800, 600), "The Time Dungeons"), dungeon(10,
 void Game::start()
 {
     std::cout << "Game started" << std::endl;
-	player.start();
-    enemy.start();
+	player->start();
+    enemy->start();
 }
 
 void Game::run()
@@ -57,8 +61,8 @@ void Game::processEvents()
 void Game::update() 
 {
     // Update is called before every rendered frame.
-    player.update();
-    enemy.update();
+    player->update();
+    enemy->update();
 }
 
 void Game::fixedUpdate(sf::Time deltaTime)
@@ -66,10 +70,10 @@ void Game::fixedUpdate(sf::Time deltaTime)
     collisionManager.fixedUpdate(deltaTime);
 
     // Fixed update is called at a fixed time step, meaning it called independently from the current framerate.
-    player.fixedUpdate(deltaTime);
-    enemy.fixedUpdate(deltaTime);
+    player->fixedUpdate(deltaTime);
+    enemy->fixedUpdate(deltaTime);
 
-    view.setCenter(player.getPosition());
+    view.setCenter(player->getPosition());
 }
 
 void Game::render() 
@@ -78,8 +82,8 @@ void Game::render()
 
     window.clear();
 
-    enemy.draw(window);
-    player.draw(window);
+    enemy->draw(window);
+    player->draw(window);
     //view.setCenter(dungeon.getCurrentRoom().getCenter());
 
     dungeon.getCurrentRoom().draw(window);

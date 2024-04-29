@@ -46,7 +46,7 @@ void Player::fixedUpdate(sf::Time deltaTime) {
 
 void Player::draw(sf::RenderWindow& window) 
 {
-    Collider::draw(window);
+    //Collider::draw(window);
     shape.setPosition(currentPosition);
     window.draw(shape);
 }
@@ -103,7 +103,3 @@ void Player::resetSpeed() {
     isTrigger = false;
 	std::cout << "Reset Speed" << std::endl;
 }
-
-//void Player::OnCollisionStart(const Collider& other) const {
-//	std::cout << "TEST Player collided with " << other.name << std::endl;
-//}

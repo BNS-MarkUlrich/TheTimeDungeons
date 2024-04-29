@@ -41,8 +41,8 @@ private:
     void boostSpeed(sf::Time deltaTime);
     void resetSpeed();
 
-    void OnCollisionStart(const Collider& other) const override {
-        std::cout << "TEST Player collided with " << other.name << std::endl;
+    void OnCollisionStart(Collider* other) {
+        std::cout << "TEST Player collided with " << other->name << std::endl;
     }
 };
 
