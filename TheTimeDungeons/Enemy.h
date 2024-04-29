@@ -16,10 +16,7 @@ public:
 	// Other player methods and properties
 	//Room currentRoom;
 
-private:
-	void OnCollisionStart(Collider* other) {
-		std::cout << "TEST Enemy collided with " << other->name << std::endl;
-	}
+	void OnCollisionEnter(Collider* other);
 };
 
 #endif

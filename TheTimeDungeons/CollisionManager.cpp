@@ -36,13 +36,11 @@ void CollisionManager::fixedUpdate(sf::Time deltaTime) {
                 if (colliders[i].collisionMap.count(colliders[j].id) > 0) {
 					colliders[i].collisionMap.erase(colliders[j].id);
                     colliders[i].OnCollisionExit(colliders[j]);
-                    colliders[i].isColliding = false;
 				}
                 // Handle collision exit
                 if (colliders[j].collisionMap.count(colliders[i].id) > 0) {
 					colliders[j].collisionMap.erase(colliders[i].id);
 					colliders[j].OnCollisionExit(colliders[i]);
-					colliders[j].isColliding = false;
                 }
             }
         }
@@ -53,18 +51,17 @@ void CollisionManager::handleCollision(Collider& collider1, Collider& collider2)
     // Check if the collision has already been handled
     Player* player = static_cast<Player*>(&collider1);
     Enemy* enemy = static_cast<Enemy*>(&collider2);
+
     if (player->collisionMap.count(collider2.id) == 0) {
         // Add the collision to the map
         player->collisionMap.insert(std::pair<int, bool>(collider2.id, true));
         player->OnCollisionEnter(&collider2);
-        player->isColliding = true;
 
         // Check if the collision has already been handled
         if (enemy->collisionMap.count(player->id) == 0) {
             // Add the collision to the map
             enemy->collisionMap.insert(std::pair<int, bool>(player->id, true));
             enemy->OnCollisionEnter(player);
-            enemy->isColliding = true;
         }
         return;
     }

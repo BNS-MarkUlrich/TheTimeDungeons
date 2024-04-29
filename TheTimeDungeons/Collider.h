@@ -13,11 +13,7 @@ public:
 	sf::Vector2f* colVelocity;
 
 	void OnCollisionEnter(Collider* other) {
-		OnCollisionStart(other);
-	}
-
-	virtual void OnCollisionStart(Collider* other) {
-		std::cout << name << " started colliding with " << other->name << std::endl;
+		isColliding = true;
 	}
 
 	void OnCollisionStay(const Collider& other) const {
@@ -29,8 +25,9 @@ public:
 		std::cout << name << " entered trigger with " << other.name << std::endl;
 	}
 
-	void OnCollisionExit(const Collider& other) const {
+	void OnCollisionExit(Collider& other) {
 		std::cout << name << " stopped colliding with " << other.name << std::endl;
+		isColliding = false;
 	}
 
 	void OnTriggerExit(Collider& other) {
@@ -62,8 +59,8 @@ public:
 	}
 
 	sf::Vector2f velocity;
-	bool isColliding = false;
-	bool isTrigger = false;
+	bool isColliding;
+	bool isTrigger;
 	std::map<int, bool> collisionMap;
 
 	//void setVelocity(sf::Vector2f newVelocity, sf::Time deltaTime, float duration);
@@ -74,7 +71,7 @@ public:
 	//void physicsUpdate(sf::Time deltaTime);
 	void physicsUpdate(sf::Time deltaTime) {
 		if (isColliding && !isTrigger) {
-			isColliding = false;
+			//isColliding = false;
 			return;
 		}
 
