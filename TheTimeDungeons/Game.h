@@ -3,6 +3,8 @@
 #include <SFML/Graphics.hpp>
 #include "Player.h"
 #include "Dungeon.h"
+#include "Enemy.h"
+#include "CollisionManager.h"
 
 
 class Game 
@@ -23,5 +25,11 @@ private:
     sf::Time deltaTime;
 
     Player player;
+    Enemy enemy;
+    /*Collider* player;
+    Collider* enemy;*/
     Dungeon dungeon;
+
+    std::vector<Collider> colliders;
+    CollisionManager collisionManager;
 };
