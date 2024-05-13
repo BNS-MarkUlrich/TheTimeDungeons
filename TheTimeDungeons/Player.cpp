@@ -2,72 +2,80 @@
 #include <iostream>
 
 Player::Player() {
-    // Set current position to the center of the current room in the Dungeon
-    movementSpeed = 1.25f;
+    name = "Player";
+
+    movementSpeed = 2.25f;
+    maxMovementSpeed = movementSpeed;
+    shape.setFillColor(sf::Color::Green);
+    shape.setRadius(10.0f);
 }
 
 void Player::start() {
-    std::cout << "Player started" << std::endl;
+    Collider::start();
 
-	currentPosition = currentRoom.getCenter();
+	currentPosition = sf::Vector2f(150,150);
+    shape.setPosition(currentPosition);
 }
 
 void Player::update() {
+    Collider::update();
     if (inputParser.isKeyPressed(Action::BoostSpeed)) {
 		activateBoost();
 	}
 }
 
 void Player::fixedUpdate(sf::Time deltaTime) {
+    Collider::fixedUpdate(deltaTime);
+
     if (isBoosted && speedBoostMultiplier > 1.15f)
     {
         boostSpeed(deltaTime);
         attack();
-        //return; // Unlock together with move call in boostSpeed for locked direction while boosting
     }
     else if (isBoosted && speedBoostMultiplier <= 1.15f) {
 		resetSpeed();
 	}
 
+    if (isColliding) {
+		std::cout << "Player is colliding" << std::endl;
+	}
+
     moveDirection = inputParser.getMoveDirection();
-    move(moveDirection);
+    move(moveDirection, deltaTime);
 }
 
 void Player::draw(sf::RenderWindow& window) 
 {
+    Collider::draw(window);
     shape.setPosition(currentPosition);
-    shape.setFillColor(sf::Color::Green);
-    shape.setRadius(10.0f);
     window.draw(shape);
 }
 
-sf::Vector2f Player::getPosition() {
-    return currentPosition;
-}
-
-void Player::move(sf::Vector2f direction) {
-    if (direction.x == 0 && direction.y == 0) {
-		return;
-    }
-
+void Player::move(sf::Vector2f direction, sf::Time deltaTime) {
     float finalMovementSpeed = movementSpeed;
 
     if (direction.x != 0 && direction.y != 0) {
         finalMovementSpeed = movementSpeed / diagonalMovementDivider;
     }
 
-    velocity = finalMovementSpeed * speedBoostMultiplier * direction;
-	shape.move(velocity);
-    currentPosition = shape.getPosition();
+    sf::Vector2f force = finalMovementSpeed * speedBoostMultiplier * direction;
+    force = force * deltaTime.asSeconds();
+    //velocity += force;
+    colVelocity->x += force.x;
+    colVelocity->y += force.y;
+
+    if (abs(colVelocity->x) > finalMovementSpeed * speedBoostMultiplier) {
+        colVelocity->x = finalMovementSpeed * speedBoostMultiplier * direction.x;
+	}
+
+    if (abs(colVelocity->y) > finalMovementSpeed * speedBoostMultiplier) {
+        colVelocity->y = finalMovementSpeed * speedBoostMultiplier * direction.y;
+	}
 }
 
 void Player::attack() {
     // On Collision with an enemy, deal damage
-    // Make player invulnerable while attacking
-    //if (shape.getGlobalBounds().intersects(obstacle.getGlobalBounds())) {
-    //    // Handle collision
-    //    std::cout << "Collision detected!" << std::endl;
-    //}
+    isTrigger = true;
 }
 
 void Player::activateBoost() {
@@ -85,13 +93,17 @@ void Player::activateBoost() {
 }
 
 void Player::boostSpeed(sf::Time deltaTime) {
-    speedBoostMultiplier = MathUtils::lerp(speedBoostMultiplier, 1.0f, deltaTime, sf::seconds(boostDuration));
-    //move(moveDirection); // Unlock together with return call in fixedUpdate for locked direction while boosting
-    std::cout << "Boosted Speed: " << speedBoostMultiplier << std::endl;
+    speedBoostMultiplier = MathUtils::lerp(speedBoostMultiplier, 0.5f, deltaTime, sf::seconds(boostDuration));
+    //std::cout << "Boosted Speed: " << speedBoostMultiplier << std::endl;
 }
 
 void Player::resetSpeed() {
 	speedBoostMultiplier = 1.0f;
 	isBoosted = false;
+    isTrigger = false;
 	std::cout << "Reset Speed" << std::endl;
 }
+
+//void Player::OnCollisionStart(const Collider& other) const {
+//	std::cout << "TEST Player collided with " << other.name << std::endl;
+//}
