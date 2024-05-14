@@ -15,8 +15,6 @@ Game::Game() : window(sf::VideoMode(800, 600), "The Time Dungeons"), dungeon(10,
     collisionManager->addCollider(*player);
     collisionManager->addCollider(*enemy);
 
-    //collisionManager->handleCollision(*player, *enemy);
-
     start();
 }
 
@@ -42,11 +40,6 @@ void Game::run()
         update();
         render();
     }
-
-    // Clean up resources (delete allocated shapes)
-    /*for (auto& collider : colliders) {
-        delete collider.shape;
-    }*/
 }
 
 void Game::processEvents() 
@@ -86,7 +79,6 @@ void Game::render()
 
     enemy->draw(window);
     player->draw(window);
-    //view.setCenter(dungeon.getCurrentRoom().getCenter());
 
     dungeon.getCurrentRoom().draw(window);
     

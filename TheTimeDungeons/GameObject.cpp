@@ -15,9 +15,7 @@ void GameObject::start() {
 
 void GameObject::update() {}
 
-void GameObject::fixedUpdate(sf::Time deltaTime) {
-	//physicsUpdate(deltaTime);
-}
+void GameObject::fixedUpdate(sf::Time deltaTime) {}
 
 void GameObject::draw(sf::RenderWindow& window) {
 	shape.setPosition(currentPosition);
@@ -27,7 +25,3 @@ void GameObject::draw(sf::RenderWindow& window) {
 sf::Vector2f GameObject::getPosition() {
 	return currentPosition;
 }
-
-//void GameObject::setVelocity(sf::Vector2f newVelocity, sf::Time deltaTime, float duration) {
-//	velocity = MathUtils::lerp(velocity, newVelocity, deltaTime, sf::seconds(duration));
-//}

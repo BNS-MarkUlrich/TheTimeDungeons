@@ -33,5 +33,4 @@ void Enemy::draw(sf::RenderWindow& window) {
 
 void Enemy::OnCollisionEnter(Collider* other) {
 	Collider::Collider::OnCollisionEnter(other);
-	//std::cout << name << " collided with " << other->name << std::endl;
 }

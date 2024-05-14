@@ -46,7 +46,6 @@ void Player::fixedUpdate(sf::Time deltaTime) {
 
 void Player::draw(sf::RenderWindow& window) 
 {
-    //Collider::draw(window);
     shape.setPosition(currentPosition);
     window.draw(shape);
 }
@@ -94,7 +93,6 @@ void Player::activateBoost() {
 
 void Player::boostSpeed(sf::Time deltaTime) {
     speedBoostMultiplier = MathUtils::lerp(speedBoostMultiplier, 0.5f, deltaTime, sf::seconds(boostDuration));
-    //std::cout << "Boosted Speed: " << speedBoostMultiplier << std::endl;
 }
 
 void Player::resetSpeed() {

@@ -35,11 +35,6 @@ public:
 	}
 
 	// Standard methods
-	/*void start();
-	void update();*/
-	//void fixedUpdate(sf::Time deltaTime);
-	/*void draw(sf::RenderWindow& window);*/
-
 	virtual void start() {
 		GameObject::start();
 	}
@@ -51,7 +46,6 @@ public:
 	virtual void fixedUpdate(sf::Time deltaTime) {
 		GameObject::fixedUpdate(deltaTime);
 		physicsUpdate(deltaTime);
-		//fixyUpdate(deltaTime);
 	}
 
 	virtual void draw(sf::RenderWindow& window) {
@@ -63,15 +57,13 @@ public:
 	bool isTrigger;
 	std::map<int, bool> collisionMap;
 
-	//void setVelocity(sf::Vector2f newVelocity, sf::Time deltaTime, float duration);
 	virtual void setVelocity(sf::Vector2f newVelocity, sf::Time deltaTime, float duration) {
 		velocity = MathUtils::lerp(velocity, newVelocity, deltaTime, sf::seconds(duration));
 	}
 
-	//void physicsUpdate(sf::Time deltaTime);
 	void physicsUpdate(sf::Time deltaTime) {
 		if (isColliding && !isTrigger) {
-			//isColliding = false;
+			isColliding = false;
 			return;
 		}
 
@@ -83,7 +75,6 @@ public:
 			velocity.y = MathUtils::lerp(velocity.y, 0, deltaTime, sf::seconds(0.5f));
 		}
 
-		//currentPosition += velocity * deltaTime.asSeconds();
 		currentPosition = shape.getPosition();
 	}
 };
