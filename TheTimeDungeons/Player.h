@@ -9,9 +9,6 @@
 #include "Collider.h"
 
 class Player : public Collider {
-    // include methods for moving the player using the WASD keys
-    // include methods for checking collisions
-
 public:
     Player();
     void start(); // Start the player
